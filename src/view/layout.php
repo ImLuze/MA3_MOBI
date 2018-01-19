@@ -29,6 +29,20 @@
           <a class="navigation-link" href="#">#weekvandemobiliteit</a>
           <a class="navigation-link" href="#">Blog</a>
         </div>
+
+        <div class="hamburger">
+          <input type="checkbox" />
+          <span></span>
+          <span></span>
+          <span></span>
+          <ul class="hamburger-menu">
+            <a href="#"><li>Home</li></a>
+            <a href="#"><li>About</li></a>
+            <a href="#"><li>Info</li></a>
+            <a href="#"><li>Contact</li></a>
+            <a href="https://erikterwan.com/" target="_blank"><li>Show me more</li></a>
+          </ul>
+        </div>
       </nav>
     </header>
 
