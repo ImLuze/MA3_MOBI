@@ -1,0 +1,7 @@
+@import 'reset';
+@import 'vars';
+
+.test {
+  font-size: 3rem;
+  color: var(--test-color);
+}
