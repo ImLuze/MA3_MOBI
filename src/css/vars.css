@@ -21,6 +21,12 @@
     font-size: 1.4rem;
   }
 
+  --red-bodycopy {
+    color: var(--red);
+    font-family: Helvetica;
+    font-size: 1.4rem;
+  }
+
   --link {
     text-decoration: none;
     text-transform: uppercase;

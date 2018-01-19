@@ -3,6 +3,17 @@
 
 body {
   @apply --flex-column-center;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  @apply --white-bodycopy;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.container {
+  @apply --flex-column-center;
 }
 
 .navigation {
@@ -152,6 +163,85 @@ body {
   transform: scale(1, 1);
   opacity: 1;
   pointer-events: auto;
+}
+
+.cards {
+  width: calc(100vw - 2rem);
+  max-width: 96rem;
+  margin-top: 1rem;
+}
+
+.card-small {
+  @apply --red-bodycopy;
+  width: calc(( 100vw - 3rem ) / 2);
+  background-color: white;
+  padding: 3.6rem 4.4rem;
+}
+
+.card-small h2 {
+  color: var(--red);
+  width: calc(( ( 100vw - 3rem ) / 2 ) - 12.4rem );
+}
+
+.card-tags {
+  @apply --white-bodycopy;
+  margin: 4.8rem 0 2rem;
+}
+
+.tag {
+  display: inline;
+  background-color: var(--red);
+  padding: .3rem 1rem;
+}
+
+.timestamp {
+  @apply --white-bodycopy;
+  @apply --flex-column-center;
+  position: absolute;
+  margin: -3.6rem 0 0 calc(( ( 100vw - 3rem ) / 2 ) - 12.4rem );
+  background-color: var(--red);
+  width: 6rem;
+  height: 7.5rem;
+}
+
+.timestamp p {
+  display: inline;
+}
+
+.timestamp p:first-child {
+  margin-bottom: -.3rem;
+  margin-top: 1.3rem;
+  font-size: 4.2rem;
+  font-weight: bold;
+}
+
+.read-more {
+  @apply --red-bodycopy;
+  @apply --link;
+  display: block;
+  font-weight: lighter;
+  margin-left: calc(( ( 100vw - 3rem ) / 2 ) - 20rem );
+  margin-top: 4rem;
+  display: flex;
+  width: 12rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.read-more:before {
+  content: ' ';
+  display: block;
+  background-color: var(--red);
+  height: .1rem;
+  width: 2rem;
+}
+
+.read-more:after {
+  content: ' ';
+  display: block;
+  background-color: var(--red);
+  height: .1rem;
+  width: 2rem;
 }
 
 @media (max-width: 850px) {
