@@ -15,6 +15,18 @@
     align-items: center;
   }
 
-  --test-color: red;
+  --white-bodycopy {
+    color: white;
+    font-family: Helvetica;
+    font-size: 1.4rem;
+  }
+
+  --link {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  --red: #ff4064;
 
 }

@@ -14,7 +14,23 @@
       <?php echo $content; ?>
     </div>
 
-    <p class="test">hey</p>
+    <header>
+      <nav class="navigation">
+        <div class="navigation-lang">
+          <a class="lang-link" href="#">Nl</a>
+          <p class="white-bodycopy">|</p>
+          <a class="lang-link lang-inactive" href="#">FR</a>
+        </div>
+        <span class="navigation-selector reverse-element"></span>
+        <div class="navigation-list">
+          <a class="navigation-link active-link" href="#">Home</a>
+          <a class="navigation-link" href="#">Evenementen</a>
+          <a class="navigation-link" href="#">Praktisch</a>
+          <a class="navigation-link" href="#">#weekvandemobiliteit</a>
+          <a class="navigation-link" href="#">Blog</a>
+        </div>
+      </nav>
+    </header>
 
     <?php echo $js;?>
   </body>

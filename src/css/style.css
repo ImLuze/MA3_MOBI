@@ -1,7 +1,83 @@
 @import 'reset';
 @import 'vars';
 
-.test {
-  font-size: 3rem;
-  color: var(--test-color);
+body {
+  @apply --flex-column-center;
+}
+
+.navigation {
+  width: calc(100vw - 2rem);
+  height: 6rem;
+  background-color: var(--red);
+  margin-top: 1rem;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6rem;
+}
+
+.navigation-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 62rem;
+  height: 100%;
+}
+
+.navigation-link {
+  @apply --white-bodycopy;
+  @apply --link;
+}
+
+.navigation-lang {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 5rem;
+  height: 100%;
+}
+
+.navigation-selector {
+  display: table;
+  height: .5rem;
+  background-color: white;
+  top: 6.5rem;
+  position: fixed;
+  transition: width .3s, left .3s ease-out;
+}
+
+.lang-link {
+  @apply --white-bodycopy;
+  @apply --link;
+}
+
+.lang-link:hover {
+  font-weight: bold;
+}
+
+.lang-inactive {
+  font-weight: lighter;
+}
+
+.white-bodycopy {
+  @apply --white-bodycopy;
+  font-weight: bold;
+}
+
+@media (max-width: 850px) {
+
+  .navigation-list {
+    width: 55rem;
+  }
+}
+
+@media (max-width: 800px) {
+
+  .navigation-list {
+    width: 50rem;
+  }
+
+  .navigation {
+    padding: 2rem;
+  }
 }
