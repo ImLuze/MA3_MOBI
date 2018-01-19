@@ -31,7 +31,22 @@
         <p class="tag">bakfiets</p>
         <p class="tag">deelfietsen</p>
       </div>
-      <p>Nieuwsgierig naar de allernieuwste trends op het vlak van vervoer of autodelen? Of wilt u meer weten over de</p>
+      <p class="card-bodycopy">Nieuwsgierig naar de allernieuwste trends op het vlak van vervoer of autodelen? Of wilt u meer weten over de</p>
+      <a class="read-more" href="#">Meer info</a>
+    </article>
+    <article class="card-photo">
+      <div class="timestamp">
+        <p>16</p>
+        <p>sept</p>
+      </div>
+      <h2>Mobiliteitsmarkt Antwerpen Autovrij</h2>
+      <div class="card-tags">
+        <p class="tag">markt</p>
+        <p class="tag">fiets</p>
+        <p class="tag">bakfiets</p>
+        <p class="tag">deelfietsen</p>
+      </div>
+      <p class="card-bodycopy">Nieuwsgierig naar de allernieuwste trends op het vlak van vervoer of autodelen? Of wilt u meer weten over de</p>
       <a class="read-more" href="#">Meer info</a>
     </article>
   </section>

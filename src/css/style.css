@@ -167,20 +167,44 @@ h2 {
 
 .cards {
   width: calc(100vw - 2rem);
-  max-width: 96rem;
+  max-width: 98rem;
   margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .card-small {
   @apply --red-bodycopy;
-  width: calc(( 100vw - 3rem ) / 2);
+  width: calc(( 100vw - 4rem ) / 2);
+  max-width: 48rem;
   background-color: white;
-  padding: 3.6rem 4.4rem;
+  padding: 3.6rem 4.4rem 1rem;
+  margin: .5rem;
 }
 
 .card-small h2 {
   color: var(--red);
-  width: calc(( ( 100vw - 3rem ) / 2 ) - 12.4rem );
+  width: calc(( ( 100vw - 4rem ) / 2 ) - 12.4rem );
+  max-width: 35.6rem;
+}
+
+.card-photo {
+  @apply --red-bodycopy;
+  width: calc(( 100vw - 4rem ) / 2);
+  max-width: 48rem;
+  background-color: white;
+  padding: 3.6rem 4.4rem 1rem;
+  margin: .5rem;
+}
+
+.card-photo h2 {
+  color: var(--red);
+  width: calc(( ( 100vw - 4rem ) / 2 ) - 12.4rem );
+  max-width: 35.6rem;
+}
+
+.card-bodycopy {
+  line-height: 1.62;
 }
 
 .card-tags {
@@ -198,7 +222,7 @@ h2 {
   @apply --white-bodycopy;
   @apply --flex-column-center;
   position: absolute;
-  margin: -3.6rem 0 0 calc(( ( 100vw - 3rem ) / 2 ) - 12.4rem );
+  margin: -3.6rem 0 0 calc(( ( 100vw - 4rem ) / 2 ) - 12.4rem );
   background-color: var(--red);
   width: 6rem;
   height: 7.5rem;
@@ -220,7 +244,7 @@ h2 {
   @apply --link;
   display: block;
   font-weight: lighter;
-  margin-left: calc(( ( 100vw - 3rem ) / 2 ) - 20rem );
+  margin-left: calc(( ( 100vw - 5rem ) / 2 ) - 20rem );
   margin-top: 4rem;
   display: flex;
   width: 12rem;
@@ -229,19 +253,22 @@ h2 {
 }
 
 .read-more:before {
-  content: ' ';
-  display: block;
-  background-color: var(--red);
-  height: .1rem;
-  width: 2rem;
+  @apply --read-more-arrow;
 }
 
 .read-more:after {
-  content: ' ';
-  display: block;
-  background-color: var(--red);
-  height: .1rem;
-  width: 2rem;
+  @apply --read-more-arrow;
+}
+
+@media (min-width: 1000px) {
+
+  .timestamp {
+    margin: -3.6rem 0 0 35.6rem;
+  }
+
+  .read-more {
+    margin-left: 27.5rem;
+  }
 }
 
 @media (max-width: 850px) {

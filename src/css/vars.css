@@ -33,6 +33,14 @@
     font-weight: bold;
   }
 
+  --read-more-arrow {
+    content: ' ';
+    display: block;
+    background-color: var(--red);
+    height: .1rem;
+    width: 2rem;
+  }
+
   --red: #ff4064;
 
 }
