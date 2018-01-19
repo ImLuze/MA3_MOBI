@@ -36,11 +36,11 @@
           <span></span>
           <span></span>
           <ul class="hamburger-menu">
-            <a href="#"><li>Home</li></a>
-            <a href="#"><li>About</li></a>
-            <a href="#"><li>Info</li></a>
-            <a href="#"><li>Contact</li></a>
-            <a href="https://erikterwan.com/" target="_blank"><li>Show me more</li></a>
+            <a class="navigation-link" href="#"><li>Home</li></a>
+            <a class="navigation-link" href="#"><li>Evenementen</li></a>
+            <a class="navigation-link" href="#"><li>Praktisch</li></a>
+            <a class="navigation-link" href="#"><li>#weekvandemobiliteit</li></a>
+            <a class="navigation-link" href="#"><li>Blog</li></a>
           </ul>
         </div>
       </nav>
