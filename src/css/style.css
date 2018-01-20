@@ -305,6 +305,46 @@ h2 {
   justify-content: space-between;
 }
 
+.date-filter {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100vw - 2rem);
+  max-width: 97rem;
+  margin: .5rem;
+}
+
+.date-filter-day {
+  @apply --white-bodycopy;
+  background-color: var(--red);
+  font-weight: bold;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: calc((( 100vw - 2rem) / 7 ) - .1rem);
+  max-width: calc(( 97rem / 7 ) - .1rem);
+  height: 8rem;
+  transition: background-color .3s;
+  cursor: pointer;
+}
+
+.date-filter-day:hover, .date-filter-day-active {
+  background-color: #db2e4e;
+  transition: background-color .3s;
+}
+
+.date-filter-day p:first-child {
+  font-size: 4.8rem;
+  transition: font-size .3s;
+}
+
+.date-filter-day:hover p:first-child, .date-filter-day-active p:first-child {
+  font-size: 6rem;
+  transition: font-size .3s;
+}
+
 .read-more:before {
   @apply --read-more-arrow;
 }
