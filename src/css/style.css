@@ -3,6 +3,17 @@
 
 body {
   @apply --flex-column-center;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  @apply --white-bodycopy;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.container {
+  @apply --flex-column-center;
 }
 
 .navigation {
@@ -15,6 +26,10 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0 6rem;
+  position: fixed;
+  top: 0;
+  left: 1rem;
+  z-index: 4;
 }
 
 .navigation-list {
@@ -154,6 +169,165 @@ body {
   pointer-events: auto;
 }
 
+.cards {
+  width: calc(100vw - 2rem);
+  max-width: 98rem;
+  margin-top: 10rem;
+  display: flex;
+  flex-flow: row wrap;
+  flex-wrap: wrap;
+}
+
+.card-small {
+  @apply --red-bodycopy;
+  width: calc(( 100vw - 4rem ) / 2);
+  max-width: 48rem;
+  background-color: white;
+  padding: 3.6rem 4.4rem 1rem;
+  margin: .5rem;
+  height: 100%;
+}
+
+.card-small h2 {
+  color: var(--red);
+  margin-top: -3.6rem;
+  max-width: 35.6rem;
+}
+
+.card-photo {
+  @apply --red-bodycopy;
+  width: calc(( 100vw - 4rem ) / 2);
+  max-width: 48rem;
+  background-color: white;
+  padding: 3.6rem 4.4rem 1rem;
+  margin: .5rem;
+}
+
+.card-photo h2 {
+  color: var(--red);
+  max-width: 35.6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.card-photo .card-tags {
+  margin: 2.8rem 0 4.4rem;
+}
+
+.card-bodycopy {
+  line-height: 1.62;
+}
+
+.card-tags {
+  @apply --white-bodycopy;
+  margin: 4.8rem 0 2rem;
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.card-img {
+  position: relative;
+  margin-top: -6.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-img::after {
+  content: ' ';
+  display: block;
+  width: var(--image-width-offset);
+  height: 20rem;
+  position: absolute;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  margin-top: calc(100vw / 18.5);
+}
+
+.card-img img {
+  filter: grayscale(100%);
+  width: var(--image-width-offset);
+}
+
+.card-img h2 {
+  position: absolute;
+  text-align: center;
+  background-color: white;
+  padding: .5rem 0;
+  z-index: 2;
+}
+
+.tag {
+  display: inline;
+  background-color: var(--red);
+  padding: .3rem 1rem;
+  margin-right: .1rem;
+  margin-top: .1rem;
+}
+
+.timestamp {
+  @apply --white-bodycopy;
+  @apply --flex-column-center;
+  position: absolute;
+  margin: -3.6rem 0 0 calc(( ( 100vw - 4rem ) / 2 ) - 12.4rem );
+  background-color: var(--red);
+  width: 6rem;
+  height: 7.5rem;
+  position: relative;
+  z-index: 3;
+}
+
+.timestamp p {
+  display: inline;
+}
+
+.timestamp p:first-child {
+  margin-bottom: -.3rem;
+  margin-top: 1.3rem;
+  font-size: 4.2rem;
+  font-weight: bold;
+}
+
+.read-more {
+  @apply --red-bodycopy;
+  @apply --link;
+  display: block;
+  font-weight: lighter;
+  margin-left: calc(( ( 100vw - 5rem ) / 2 ) - 20rem );
+  margin-top: 4rem;
+  display: flex;
+  width: 12rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.read-more:before {
+  @apply --read-more-arrow;
+}
+
+.read-more:after {
+  @apply --read-more-arrow;
+}
+
+@media (min-width: 1000px) {
+
+  .timestamp {
+    margin: -3.6rem 0 0 35.6rem;
+  }
+
+  .read-more {
+    margin-left: 27.5rem;
+  }
+
+  .card-img img, .card-img::after {
+    width: 46rem;
+  }
+}
+
 @media (max-width: 850px) {
 
   .navigation-list {
@@ -170,6 +344,44 @@ body {
   .navigation {
     padding: 2rem;
   }
+
+  .cards {
+    flex-direction: column;
+  }
+
+  .card-small, .card-photo {
+    width: calc(100vw - 4rem);
+    max-width: none;
+  }
+
+  .read-more {
+    margin-left: calc(( 100vw - 5rem ) - 20rem);
+  }
+
+  .timestamp {
+    margin: -3.6rem 0 0 calc(( 100vw - 4rem ) - 12.4rem);
+  }
+
+  .card-img {
+    margin: -6.5rem -3.4rem;
+  }
+
+  .card-img img {
+    width: calc(( 100vw - 4rem ) - 2rem);
+  }
+
+  .card-img::after {
+    width: calc(( 100vw - 4rem ) - 2rem);
+    /* margin-left: calc(( -100vw + 4rem ) + 2rem); */
+    /* 431px vw = 0 top */
+    /* margin-top: 4rem; */
+    margin-top: calc(( 100vw - 36.1rem) / 2.5);
+  }
+
+  .card-photo h2 {
+    width: calc(( 100vw - 4rem ) - 12.4rem);
+    max-width: none;
+  }
 }
 
 @media (max-width: 650px) {
@@ -185,9 +397,24 @@ body {
   .hamburger {
     display: block;
   }
+
+  .card-small h2, .card-photo h2 {
+    max-width: 50vw;
+  }
+}
+
+@media (max-width: 400px) {
+
+  h2 {
+    font-size: 2.4rem;
+  }
 }
 
 @media (max-width: 350px) {
+
+  h2 {
+    font-size: 2rem;
+  }
 
   .hamburger-menu li {
     font-size: 1.8rem;
