@@ -19,7 +19,23 @@
     </article> -->
   <? endforeach;?>
   <section class="cards">
-    <article class="card-small">
+    <?php foreach($events as $event): ?>
+      <article class="card-small">
+        <div class="timestamp">
+          <p><?php echo date('j', strtotime($event['start'])); ?></p>
+          <p><?php echo date('M', strtotime($event['start'])); ?></p>
+        </div>
+        <h2><?php echo $event['title'] ?></h2>
+        <div class="card-tags">
+          <?php foreach($event['tags'] as $tag): ?>
+            <p class="tag"><?php echo $tag['tag'] ?></p>
+          <?php endforeach; ?>
+        </div>
+        <p class="card-bodycopy"><?php echo substr($event['content'], 0, 100)?></p>
+        <a class="read-more" href="#">Meer info</a>
+      </article>
+    <? endforeach;?>
+    <!-- <article class="card-small">
       <div class="timestamp">
         <p>16</p>
         <p>sept</p>
@@ -84,6 +100,6 @@
       </div>
       <p class="card-bodycopy">Nieuwsgierig naar de allernieuwste trends op het vlak van vervoer of autodelen? Of wilt u meer weten over de</p>
       <a class="read-more" href="#">Meer info</a>
-    </article>
+    </article> -->
   </section>
 </section>
