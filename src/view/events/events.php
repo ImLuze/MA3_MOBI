@@ -39,6 +39,42 @@
         <p>16</p>
         <p>sept</p>
       </div>
+      <div class="card-img">
+        <img src="./assets/img/ANT1/Blue-bike-stad.jpg" alt="Blue bike stad">
+        <h2>Mobiliteitsmarkt Antwerpen Autovrij</h2>
+      </div>
+      <div class="card-tags">
+        <p class="tag">markt</p>
+        <p class="tag">fiets</p>
+        <p class="tag">bakfiets</p>
+        <p class="tag">deelfietsen</p>
+      </div>
+      <p class="card-bodycopy">Nieuwsgierig naar de allernieuwste trends op vlak van vervoer en autodelen? Of wilt u meer info over de wegenwerken en slimme alternatieven in Antwerpen? Neem dan zeker ook een kijkje op de mobiliteitsmarkt.</p>
+      <a class="read-more" href="#">Meer info</a>
+    </article>
+    <article class="card-photo">
+      <div class="timestamp">
+        <p>16</p>
+        <p>sept</p>
+      </div>
+      <div class="card-img">
+        <img src="./assets/img/ANT1/Blue-bike-stad.jpg" alt="Blue bike stad">
+        <h2>Mobiliteitsmarkt Antwerpen Autovrij</h2>
+      </div>
+      <div class="card-tags">
+        <p class="tag">markt</p>
+        <p class="tag">fiets</p>
+        <p class="tag">bakfiets</p>
+        <p class="tag">deelfietsen</p>
+      </div>
+      <p class="card-bodycopy">Nieuwsgierig naar de allernieuwste trends op vlak van vervoer en autodelen? Of wilt u meer info over de wegenwerken en slimme alternatieven in Antwerpen? Neem dan zeker ook een kijkje op de mobiliteitsmarkt.</p>
+      <a class="read-more" href="#">Meer info</a>
+    </article>
+    <article class="card-small">
+      <div class="timestamp">
+        <p>16</p>
+        <p>sept</p>
+      </div>
       <h2>Mobiliteitsmarkt Antwerpen Autovrij</h2>
       <div class="card-tags">
         <p class="tag">markt</p>

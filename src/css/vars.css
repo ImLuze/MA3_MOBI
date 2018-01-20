@@ -42,5 +42,7 @@
   }
 
   --red: #ff4064;
+  --image-width-offset: calc(( ( 100vw - 4rem ) / 2 ) - 2rem);
+  --image-top-offset: calc(((-68.5rem + ( ( 100vw - 4rem ) / 2 ) - 2rem) / 3) + 1rem);
 
 }
