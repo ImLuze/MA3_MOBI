@@ -29,7 +29,7 @@ h2 {
   position: fixed;
   top: 0;
   left: 1rem;
-  z-index: 3;
+  z-index: 4;
 }
 
 .navigation-list {
@@ -190,7 +190,6 @@ h2 {
 
 .card-small h2 {
   color: var(--red);
-  width: calc(( ( 100vw - 4rem ) / 2 ) - 12.4rem);
   margin-top: -3.6rem;
   max-width: 35.6rem;
 }
@@ -206,7 +205,6 @@ h2 {
 
 .card-photo h2 {
   color: var(--red);
-  width: calc(( ( 100vw - 4rem ) / 2 ) - 12.4rem);
   max-width: 35.6rem;
   position: relative;
   z-index: 1;
@@ -280,7 +278,7 @@ h2 {
   width: 6rem;
   height: 7.5rem;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .timestamp p {
@@ -398,6 +396,10 @@ h2 {
 
   .hamburger {
     display: block;
+  }
+
+  .card-small h2, .card-photo h2 {
+    max-width: 50vw;
   }
 }
 
