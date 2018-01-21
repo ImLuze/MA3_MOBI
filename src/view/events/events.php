@@ -19,6 +19,27 @@
     </article> -->
   <? endforeach;?>
   <section class="cards">
+    <div class="selected-tags">
+      <p class="tag selected-tag">muziek</p>
+      <p class="tag selected-tag">fiets</p>
+      <p class="tag selected-tag">eten</p>
+      <p class="tag selected-tag">familie</p>
+      <p class="tag selected-tag">auto</p>
+    </div>
+    <!-- <div class="tag-filter">
+      <?php foreach($tags as $tag): ?>
+        <p class="tag tag-filter-tag"><?php echo $tag['tag']; ?></p>
+      <?php endforeach; ?>
+    </div> -->
+    <div class="tag-filter">
+      <div class="less-slider-btn">&bull; &bull; &bull;</div>
+      <ul class="tag-filter-tags">
+        <?php foreach($tags as $tag): ?>
+          <li class="tag tag-filter-tag"><?php echo $tag['tag']; ?></li>
+        <?php endforeach; ?>
+      </ul>
+      <div class="more-slider-btn">&bull; &bull; &bull;</div>
+    </div>
     <form class="date-filter" action="/events" method="post">
       <input class="date-filter-day" type="checkbox" name="16" value="16">
       <label class="date-filter-day-label" for="16">

@@ -132,4 +132,11 @@ class EventDAO extends DAO {
     return $tagsByEventId;
   }
 
+  public function selectAllTags() {
+    $sql = "SELECT `tag` FROM `ma3_auto_tags` ORDER BY `ma3_auto_tags`.`tag` ASC";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
 }
