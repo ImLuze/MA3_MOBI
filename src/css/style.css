@@ -29,7 +29,7 @@ h2 {
   position: fixed;
   top: 0;
   left: 1rem;
-  z-index: 4;
+  z-index: 5;
 }
 
 .navigation-list {
@@ -313,6 +313,31 @@ h2 {
   margin: .5rem;
 }
 
+.cards-fixed {
+  margin-top: 18.9rem;
+}
+
+.date-filter-fixed {
+  position: fixed;
+  z-index: 4;
+  margin: 0;
+  margin-top: -11.8rem;
+}
+
+.date-filter-fixed .date-filter-day {
+  height: 6rem;
+  transition: height .3s;
+}
+
+.date-filter-fixed .date-filter-day p:first-child {
+  font-size: 3.6rem;
+}
+
+.date-filter-fixed .date-filter-day:hover p:first-child, .date-filter-fixed .date-filter-day-active p:first-child {
+  font-size: 4.6rem;
+  transition: font-size .3s;
+}
+
 .date-filter-day {
   @apply --white-bodycopy;
   background-color: var(--red);
@@ -328,6 +353,7 @@ h2 {
   height: 8rem;
   transition: background-color .3s;
   cursor: pointer;
+  transition: height .3s;
 }
 
 .date-filter-day:hover, .date-filter-day-active {
