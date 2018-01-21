@@ -19,36 +19,6 @@
     </article> -->
   <? endforeach;?>
   <section class="cards">
-    <!-- <ul class="date-filter">
-      <li class="date-filter-day">
-        <p>16</p>
-        <p>september</p>
-      </li>
-      <li class="date-filter-day date-filter-day-active">
-        <p>17</p>
-        <p>september</p>
-      </li>
-      <li class="date-filter-day">
-        <p>18</p>
-        <p>september</p>
-      </li>
-      <li class="date-filter-day">
-        <p>19</p>
-        <p>september</p>
-      </li>
-      <li class="date-filter-day">
-        <p>20</p>
-        <p>september</p>
-      </li>
-      <li class="date-filter-day">
-        <p>21</p>
-        <p>september</p>
-      </li>
-      <li class="date-filter-day">
-        <p>22</p>
-        <p>september</p>
-      </li>
-    </ul> -->
     <form class="date-filter" action="/events" method="post">
       <input class="date-filter-day" type="checkbox" name="16" value="16">
       <label class="date-filter-day-label" for="16">

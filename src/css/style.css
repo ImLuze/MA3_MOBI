@@ -330,52 +330,9 @@ h2 {
 }
 
 .date-filter-fixed .date-filter-day-label p:first-child {
-  font-size: 4rem;
-  transition: font-size .3s;
-}
-
-.date-filter-fixed .date-filter-day p:first-child {
   font-size: 3.6rem;
-}
-
-.date-filter-fixed .date-filter-day:hover p:first-child, .date-filter-fixed .date-filter-day-active p:first-child {
-  font-size: 4.6rem;
   transition: font-size .3s;
 }
-
-/* .date-filter-day {
-  @apply --white-bodycopy;
-  background-color: var(--red);
-  font-weight: bold;
-  text-align: center;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  width: calc((( 100vw - 2rem) / 7 ) - .1rem);
-  max-width: calc(( 97rem / 7 ) - .1rem);
-  height: 8rem;
-  transition: background-color .3s, height .3s;
-  cursor: pointer;
-
-  appearance: none;
-}
-
-.date-filter-day:hover, .date-filter-day-active {
-  background-color: #db2e4e;
-  transition: background-color .3s;
-}
-
-.date-filter-day p:first-child {
-  font-size: 4.8rem;
-  transition: font-size .3s;
-}
-
-.date-filter-day:hover p:first-child, .date-filter-day:checked p:first-child {
-  font-size: 6rem;
-  transition: font-size .3s;
-} */
 
 .date-filter-day {
   appearance: none;
@@ -391,6 +348,14 @@ h2 {
 
 .date-filter-day:hover, .date-filter-day:checked {
   background-color: #db2e4e;
+}
+
+.date-filter-day:hover + .date-filter-day-label p:first-child, .date-filter-day:checked + .date-filter-day-label p:first-child {
+  font-size: 6rem;
+}
+
+.date-filter-fixed .date-filter-day:hover + .date-filter-day-label p:first-child, .date-filter-fixed .date-filter-day:checked + .date-filter-day-label p:first-child {
+  font-size: 4.2rem;
 }
 
 .date-filter-day-label {
