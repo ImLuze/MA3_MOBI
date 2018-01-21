@@ -19,13 +19,7 @@
     </article> -->
   <? endforeach;?>
   <section class="cards">
-    <div class="selected-tags">
-      <p class="tag selected-tag">muziek</p>
-      <p class="tag selected-tag">fiets</p>
-      <p class="tag selected-tag">eten</p>
-      <p class="tag selected-tag">familie</p>
-      <p class="tag selected-tag">auto</p>
-    </div>
+    <div class="selected-tags"></div>
     <!-- <div class="tag-filter">
       <?php foreach($tags as $tag): ?>
         <p class="tag tag-filter-tag"><?php echo $tag['tag']; ?></p>

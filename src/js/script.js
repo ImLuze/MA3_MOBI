@@ -1,3 +1,11 @@
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+  for(let i = this.length - 1; i >= 0; i--) {
+    if(this[i] && this[i].parentElement) {
+      this[i].parentElement.removeChild(this[i]);
+    }
+  }
+};
+
 const handleLinkHover = e => {
   const currentLink = e.currentTarget.getBoundingClientRect();
   const selector = document.querySelectorAll(`.navigation-selector`);
@@ -167,11 +175,44 @@ const setupTagSlider = () => {
   });
 };
 
+const setupTagSelection = () => {
+  const selectedTagsContainer = document.querySelectorAll(`.selected-tags`)[0];
+  let selectedTags = document.querySelectorAll(`.selected-tag`);
+  const tagsContainer = document.querySelectorAll(`.tag-filter-tags`);
+  let tags = document.querySelectorAll(`.tag-filter-tag`);
+
+  for(let i = 0; i < tags.length; i++) {
+    tags[i].addEventListener(`click`, () => {
+      const tag = document.createElement(`p`);
+      tag.classList.add(`tag`);
+      tag.classList.add(`selected-tag`);
+      tag.innerText = tags[i].innerText;
+      selectedTagsContainer.appendChild(tag);
+      tags[i].remove();
+      selectedTags = document.querySelectorAll(`.selected-tag`);
+    });
+  }
+
+  for(let i = 0; i < selectedTags.length; i++) {
+    console.log(selectedTags[i]);
+    selectedTags[i].addEventListener(`click`, () => {
+      const tag = document.createElement(`p`);
+      tag.classList.add(`tag`);
+      tag.classList.add(`tag-filter-tag`);
+      tag.innerText = selectedTags[i].innerText;
+      tagsContainer.appendChild(tag);
+      selectedTags[i].remove();
+      tags = document.querySelectorAll(`.tag-filter-tag`);
+    });
+  }
+};
+
 const init = () => {
   setupHoverFollower();
   setupFixedFilter();
   setupDateFilterLabels();
   setupTagSlider();
+  setupTagSelection();
 };
 
 init();
