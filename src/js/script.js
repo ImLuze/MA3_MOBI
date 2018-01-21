@@ -67,9 +67,32 @@ const setupFixedDayFilter = () => {
 
 };
 
+const setupDateFilterLabels = () => {
+  const labels = document.querySelectorAll(`.date-filter-day-label`);
+
+  window.addEventListener(`resize`, () => {
+    for(let i = 0; i < labels.length; i++) {
+      if(window.innerWidth < 1000) {
+        labels[i].style.marginLeft = `calc(((( 100vw - 2rem) / 7 ) - .1rem ) * ${i})`;
+      } else {
+        labels[i].style.marginLeft = `calc(((97rem / 7 ) - .1rem ) * ${i})`;
+      }
+    }
+  });
+
+  for(let i = 0; i < labels.length; i++) {
+    if(window.innerWidth < 1000) {
+      labels[i].style.marginLeft = `calc(((( 100vw - 2rem) / 7 ) - .1rem ) * ${i})`;
+    } else {
+      labels[i].style.marginLeft = `calc(((97rem / 7 ) - .1rem ) * ${i})`;
+    }
+  }
+};
+
 const init = () => {
   setupHoverFollower();
   setupFixedDayFilter();
+  setupDateFilterLabels();
 };
 
 init();

@@ -324,9 +324,14 @@ h2 {
   margin-top: -11.8rem;
 }
 
-.date-filter-fixed .date-filter-day {
+.date-filter-fixed .date-filter-day, .date-filter-fixed .date-filter-day-label {
   height: 6rem;
   transition: height .3s;
+}
+
+.date-filter-fixed .date-filter-day-label p:first-child {
+  font-size: 4rem;
+  transition: font-size .3s;
 }
 
 .date-filter-fixed .date-filter-day p:first-child {
@@ -338,7 +343,7 @@ h2 {
   transition: font-size .3s;
 }
 
-.date-filter-day {
+/* .date-filter-day {
   @apply --white-bodycopy;
   background-color: var(--red);
   font-weight: bold;
@@ -351,9 +356,10 @@ h2 {
   width: calc((( 100vw - 2rem) / 7 ) - .1rem);
   max-width: calc(( 97rem / 7 ) - .1rem);
   height: 8rem;
-  transition: background-color .3s;
+  transition: background-color .3s, height .3s;
   cursor: pointer;
-  transition: height .3s;
+
+  appearance: none;
 }
 
 .date-filter-day:hover, .date-filter-day-active {
@@ -366,8 +372,44 @@ h2 {
   transition: font-size .3s;
 }
 
-.date-filter-day:hover p:first-child, .date-filter-day-active p:first-child {
+.date-filter-day:hover p:first-child, .date-filter-day:checked p:first-child {
   font-size: 6rem;
+  transition: font-size .3s;
+} */
+
+.date-filter-day {
+  appearance: none;
+  outline: none;
+  margin: 0;
+
+  background-color: var(--red);
+  width: calc((( 100vw - 2rem) / 7 ) - .1rem);
+  max-width: calc(( 97rem / 7 ) - .1rem);
+  height: 8rem;
+  transition: height .3s;
+}
+
+.date-filter-day:hover, .date-filter-day:checked {
+  background-color: #db2e4e;
+}
+
+.date-filter-day-label {
+  @apply --white-bodycopy;
+  position: absolute;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: calc((( 100vw - 2rem) / 7 ) - .1rem);
+  max-width: calc(( 97rem / 7 ) - .1rem);
+  height: 8rem;
+  margin-left: calc(( 100vw - 2rem) / 7);
+  pointer-events: none;
+}
+
+.date-filter-day-label p:first-child {
+  font-size: 4.8rem;
   transition: font-size .3s;
 }
 
@@ -438,9 +480,6 @@ h2 {
 
   .card-img::after {
     width: calc(( 100vw - 4rem ) - 2rem);
-    /* margin-left: calc(( -100vw + 4rem ) + 2rem); */
-    /* 431px vw = 0 top */
-    /* margin-top: 4rem; */
     margin-top: calc(( 100vw - 36.1rem) / 2.5);
   }
 
