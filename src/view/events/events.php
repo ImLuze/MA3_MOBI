@@ -19,6 +19,43 @@
     </article> -->
   <? endforeach;?>
   <section class="cards">
+    <form class="date-filter" action="/events" method="post">
+      <input class="date-filter-day" type="checkbox" name="16" value="16">
+      <label class="date-filter-day-label" for="16">
+        <p>16</p>
+        <p>september</p>
+      </label>
+      <input class="date-filter-day" type="checkbox" name="17" value="17">
+      <label class="date-filter-day-label" for="17">
+        <p>17</p>
+        <p>september</p>
+      </label>
+      <input class="date-filter-day" type="checkbox" name="18" value="18">
+      <label class="date-filter-day-label" for="18">
+        <p>18</p>
+        <p>september</p>
+      </label>
+      <input class="date-filter-day" type="checkbox" name="19" value="19">
+      <label class="date-filter-day-label" for="19">
+        <p>19</p>
+        <p>september</p>
+      </label>
+      <input class="date-filter-day" type="checkbox" name="20" value="20">
+      <label class="date-filter-day-label" for="20">
+        <p>20</p>
+        <p>september</p>
+      </label>
+      <input class="date-filter-day" type="checkbox" name="21" value="21">
+      <label class="date-filter-day-label" for="21">
+        <p>21</p>
+        <p>september</p>
+      </label>
+      <input class="date-filter-day" type="checkbox" name="22" value="22">
+      <label class="date-filter-day-label" for="22">
+        <p>22</p>
+        <p>september</p>
+      </label>
+    </form>
     <?php foreach($events as $event): ?>
       <?php if(file_exists('./assets/img/photos/'.$event['code'])): ?>
         <article class="card-photo">
@@ -71,71 +108,5 @@
         </article>
       <?php endif; ?>
     <? endforeach;?>
-    <!-- <article class="card-small">
-      <div class="timestamp">
-        <p>16</p>
-        <p>sept</p>
-      </div>
-      <h2>Mobiliteitsmarkt Antwerpen Autovrij</h2>
-      <div class="card-tags">
-        <p class="tag">markt</p>
-        <p class="tag">fiets</p>
-        <p class="tag">bakfiets</p>
-        <p class="tag">deelfietsen</p>
-      </div>
-      <p class="card-bodycopy">Nieuwsgierig naar de allernieuwste trends op het vlak van vervoer of autodelen? Of wilt u meer weten over de</p>
-      <a class="read-more" href="#">Meer info</a>
-    </article>
-    <article class="card-photo">
-      <div class="timestamp">
-        <p>16</p>
-        <p>sept</p>
-      </div>
-      <div class="card-img">
-        <img src="./assets/img/ANT1/Blue-bike-stad.jpg" alt="Blue bike stad">
-        <h2>Mobiliteitsmarkt Antwerpen Autovrij</h2>
-      </div>
-      <div class="card-tags">
-        <p class="tag">markt</p>
-        <p class="tag">fiets</p>
-        <p class="tag">bakfiets</p>
-        <p class="tag">deelfietsen</p>
-      </div>
-      <p class="card-bodycopy">Nieuwsgierig naar de allernieuwste trends op vlak van vervoer en autodelen? Of wilt u meer info over de wegenwerken en slimme alternatieven in Antwerpen? Neem dan zeker ook een kijkje op de mobiliteitsmarkt.</p>
-      <a class="read-more" href="#">Meer info</a>
-    </article>
-    <article class="card-photo">
-      <div class="timestamp">
-        <p>16</p>
-        <p>sept</p>
-      </div>
-      <div class="card-img">
-        <img src="./assets/img/ANT1/Blue-bike-stad.jpg" alt="Blue bike stad">
-        <h2>Mobiliteitsmarkt Antwerpen Autovrij</h2>
-      </div>
-      <div class="card-tags">
-        <p class="tag">markt</p>
-        <p class="tag">fiets</p>
-        <p class="tag">bakfiets</p>
-        <p class="tag">deelfietsen</p>
-      </div>
-      <p class="card-bodycopy">Nieuwsgierig naar de allernieuwste trends op vlak van vervoer en autodelen? Of wilt u meer info over de wegenwerken en slimme alternatieven in Antwerpen? Neem dan zeker ook een kijkje op de mobiliteitsmarkt.</p>
-      <a class="read-more" href="#">Meer info</a>
-    </article>
-    <article class="card-small">
-      <div class="timestamp">
-        <p>16</p>
-        <p>sept</p>
-      </div>
-      <h2>Mobiliteitsmarkt Antwerpen Autovrij</h2>
-      <div class="card-tags">
-        <p class="tag">markt</p>
-        <p class="tag">fiets</p>
-        <p class="tag">bakfiets</p>
-        <p class="tag">deelfietsen</p>
-      </div>
-      <p class="card-bodycopy">Nieuwsgierig naar de allernieuwste trends op het vlak van vervoer of autodelen? Of wilt u meer weten over de</p>
-      <a class="read-more" href="#">Meer info</a>
-    </article> -->
   </section>
 </section>
