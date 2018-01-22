@@ -12,6 +12,12 @@ h2 {
   font-weight: bold;
 }
 
+mark {
+  background-color: white;
+  color: var(--red);
+  padding: 0 1rem;
+}
+
 .container {
   @apply --flex-column-center;
 }
@@ -146,7 +152,8 @@ h2 {
   background-color: rgba(0, 0, 0, .9);
   -webkit-font-smoothing: antialiased;
   transform-origin: 0% 0%;
-  transform: translate(100%, 0), scale(2, 1);
+  transform: translate(100%, 0);
+  transform: scale(2, 1);
   transition: transform .5s cubic-bezier(.77, .2, .05, 1), opacity .5s cubic-bezier(.77, .2, .05, 1);
   display: flex;
   flex-direction: column;
@@ -253,7 +260,7 @@ h2 {
 .card-img h2 {
   position: absolute;
   text-align: center;
-  background-color: white;
+  /* background-color: white; */
   padding: .5rem 0;
   z-index: 2;
 }
@@ -386,7 +393,10 @@ h2 {
 .tag-filter {
   margin: 0 .5rem .1rem;
   display: flex;
-  width: 97rem;
+  justify-content: center;
+  width: calc(100vw - 2rem);
+  max-width: 97rem;
+  overflow: hidden;
 }
 
 .less-slider-btn, .more-slider-btn {
@@ -404,12 +414,12 @@ h2 {
   justify-content: flex-end;
 }
 
-.tag-filter-tags {
+/* .tag-filter-tags {
   margin-right: -2.3rem;
   margin-left: -2.3rem;
   display: flex;
   overflow: hidden;
-}
+} */
 
 .tag-filter-tag, .selected-tag {
   padding: .8rem 1rem;
@@ -431,9 +441,11 @@ h2 {
 }
 
 .selected-tags {
-  width: 97rem;
+  width: calc(100vw - 2rem);
+  max-width: 97rem;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 .selected-tags-fixed {

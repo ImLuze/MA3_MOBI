@@ -115,63 +115,89 @@ const checkIfVisible = (container, elem) => {
   }
 };
 
-const addBtns = (lessBtn, moreBtn, container, tags) => {
-  if(checkIfVisible(container, tags[0])) {
-    lessBtn.style.visibility = `hidden`;
-    moreBtn.style.visibility = `visible`;
-  } else {
-    console.log(`false`);
-    lessBtn.style.visibility = `visible`;
-  }
+// const addBtns = (lessBtn, moreBtn, container, tags) => {
+//   if(checkIfVisible(container, tags[0])) {
+//     lessBtn.style.visibility = `hidden`;
+//     moreBtn.style.visibility = `visible`;
+//   } else {
+//     console.log(`false`);
+//     lessBtn.style.visibility = `visible`;
+//   }
+//
+//   if(checkIfVisible(container, tags[tags.length - 1])) {
+//     moreBtn.style.visibility = `hidden`;
+//     lessBtn.style.visibility = `visible`;
+//   } else {
+//     moreBtn.style.visibility = `visible`;
+//   }
+// };
 
-  if(checkIfVisible(container, tags[tags.length - 1])) {
-    moreBtn.style.visibility = `hidden`;
-    lessBtn.style.visibility = `visible`;
-  } else {
-    moreBtn.style.visibility = `visible`;
-  }
-};
+// const setupTagSlider = () => {
+//   const lessBtn = document.querySelectorAll(`.less-slider-btn`)[0];
+//   const moreBtn = document.querySelectorAll(`.more-slider-btn`)[0];
+//   const container = document.querySelectorAll(`.tag-filter-tags`)[0];
+//   const tags = document.querySelectorAll(`.tag-filter-tag`);
+//
+//   let clicks = 0;
+//   const speed = 10;
+//
+//   addBtns(lessBtn, moreBtn, container, tags);
+//
+//   lessBtn.addEventListener(`click`, () => {
+//     clicks--;
+//
+//     for(let i = 0; i < tags.length; i++) {
+//       tags[i].style.marginLeft = `-${clicks * speed}rem`;
+//       tags[i].style.marginRight = `${clicks * speed}.1rem`;
+//
+//       if(clicks < 0) {
+//         clicks = 0;
+//         tags[i].style.marginLeft = 0;
+//         tags[i].style.marginRight = 0;
+//       }
+//     }
+//
+//     setTimeout(() => {
+//       addBtns(lessBtn, moreBtn, container, tags);
+//     }, 300);
+//   });
+//
+//   moreBtn.addEventListener(`click`, () => {
+//     clicks++;
+//
+//     for(let i = 0; i < tags.length; i++) {
+//       tags[i].style.marginLeft = `-${clicks * speed}rem`;
+//       tags[i].style.marginRight = `${clicks * speed}.1rem`;
+//     }
+//     setTimeout(() => {
+//       addBtns(lessBtn, moreBtn, container, tags);
+//     }, 300);
+//   });
+// };
 
-const setupTagSlider = () => {
-  const lessBtn = document.querySelectorAll(`.less-slider-btn`)[0];
-  const moreBtn = document.querySelectorAll(`.more-slider-btn`)[0];
-  const container = document.querySelectorAll(`.tag-filter-tags`)[0];
-  const tags = document.querySelectorAll(`.tag-filter-tag`);
+const addEventListenerToTag = tag => {
+  let container;
 
-  let clicks = 0;
-  const speed = 10;
+  console.log(tag);
 
-  addBtns(lessBtn, moreBtn, container, tags);
+  tag.addEventListener(`click`, () => {
+    const newTag = document.createElement(`p`);
+    newTag.classList.add(`tag`);
 
-  lessBtn.addEventListener(`click`, () => {
-    clicks--;
-
-    for(let i = 0; i < tags.length; i++) {
-      tags[i].style.marginLeft = `-${clicks * speed}rem`;
-      tags[i].style.marginRight = `${clicks * speed}.1rem`;
-
-      if(clicks < 0) {
-        clicks = 0;
-        tags[i].style.marginLeft = 0;
-        tags[i].style.marginRight = 0;
-      }
+    if(tag.classList.contains(`selected-tag`)) {
+      newTag.classList.add(`tag-filter-tag`);
+      container = document.querySelectorAll(`.tag-filter`)[0];
+    } else if(tag.classList.contains(`tag-filter-tag`)) {
+      newTag.classList.add(`selected-tag`);
+      container = document.querySelectorAll(`.selected-tags`)[0];
     }
 
-    setTimeout(() => {
-      addBtns(lessBtn, moreBtn, container, tags);
-    }, 300);
-  });
+    console.log(container);
 
-  moreBtn.addEventListener(`click`, () => {
-    clicks++;
-
-    for(let i = 0; i < tags.length; i++) {
-      tags[i].style.marginLeft = `-${clicks * speed}rem`;
-      tags[i].style.marginRight = `${clicks * speed}.1rem`;
-    }
-    setTimeout(() => {
-      addBtns(lessBtn, moreBtn, container, tags);
-    }, 300);
+    newTag.innerText = tag.innerText;
+    addEventListenerToTag(newTag);
+    container.appendChild(newTag);
+    tag.remove();
   });
 };
 
@@ -187,6 +213,7 @@ const setupTagSelection = () => {
       tag.classList.add(`tag`);
       tag.classList.add(`selected-tag`);
       tag.innerText = tags[i].innerText;
+      addEventListenerToTag(tag);
       selectedTagsContainer.appendChild(tag);
       tags[i].remove();
       selectedTags = document.querySelectorAll(`.selected-tag`);
@@ -207,11 +234,23 @@ const setupTagSelection = () => {
   }
 };
 
+const setupTags = () => {
+  const tags = document.querySelectorAll(`.tag-filter-tag`);
+  const container = document.querySelectorAll(`.tag-filter`)[0];
+
+  for(let i = 0; i < tags.length; i++) {
+    if(!checkIfVisible(container, tags[i])) {
+      tags[i].remove();
+    }
+  }
+};
+
 const init = () => {
   setupHoverFollower();
   setupFixedFilter();
   setupDateFilterLabels();
-  setupTagSlider();
+  // setupTagSlider();
+  setupTags();
   setupTagSelection();
 };
 
