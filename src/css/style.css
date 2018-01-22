@@ -465,6 +465,21 @@ mark {
   margin-top: -5rem;
 }
 
+@media (max-width: 1200px) {
+
+  .map {
+    width: 120vw;
+  }
+}
+
+@media (max-width: 1000px) {
+
+  .map {
+    width: 140vw;
+    margin-left: 8rem;
+  }
+}
+
 @media (min-width: 1000px) {
 
   .timestamp {
@@ -530,6 +545,19 @@ mark {
   .card-photo h2 {
     width: calc(( 100vw - 4rem ) - 12.4rem);
     max-width: none;
+  }
+
+  .map {
+    width: 160vw;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 700px) {
+
+  .map {
+    width: 170vw;
+    margin-top: 0;
   }
 }
 
