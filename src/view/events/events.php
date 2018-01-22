@@ -26,13 +26,11 @@
       <?php endforeach; ?>
     </div> -->
     <div class="tag-filter">
-      <div class="less-slider-btn">&bull; &bull; &bull;</div>
-      <ul class="tag-filter-tags">
+      <!-- <ul class="tag-filter-tags"> -->
         <?php foreach($tags as $tag): ?>
           <li class="tag tag-filter-tag"><?php echo $tag['tag']; ?></li>
         <?php endforeach; ?>
-      </ul>
-      <div class="more-slider-btn">&bull; &bull; &bull;</div>
+      <!-- </ul> -->
     </div>
     <form class="date-filter" action="/events" method="post">
       <input class="date-filter-day" type="checkbox" name="16" value="16">
@@ -96,14 +94,14 @@
                 echo $firstphoto;
               ?>
             alt="Blue bike stad">
-            <h2><?php echo $event['title'] ?></h2>
+            <h2><mark><?php echo $event['title'] ?></mark></h2>
           </div>
           <div class="card-tags">
             <?php foreach($event['tags'] as $tag): ?>
               <p class="tag"><?php echo $tag['tag'] ?></p>
             <?php endforeach; ?>
           </div>
-          <p class="card-bodycopy"><?php echo substr($event['content'], 0, 100)?></p>
+          <p class="card-bodycopy"><?php echo substr($event['content'], 0, 100).' ...'?></p>
           <a class="read-more" href="#">Meer info</a>
         </article>
       <?php else: ?>
@@ -118,7 +116,7 @@
               <p class="tag"><?php echo $tag['tag'] ?></p>
             <?php endforeach; ?>
           </div>
-          <p class="card-bodycopy"><?php echo substr($event['content'], 0, 100)?></p>
+          <p class="card-bodycopy"><?php echo substr($event['content'], 0, 100).' ...'?></p>
           <a class="read-more" href="#">Meer info</a>
         </article>
       <?php endif; ?>
