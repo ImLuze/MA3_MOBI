@@ -84,6 +84,9 @@ class EventsController extends Controller {
 
     $events = $this->eventDAO->search();
     $this->set('events', $events);
+
+    $tags = $this->eventDAO->selectAllTags();
+    $this->set('tags', $tags);
   }
 
 }
