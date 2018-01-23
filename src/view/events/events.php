@@ -1,36 +1,20 @@
-<section>
-  <?php foreach($events as $event): ?>
-    <!-- <article>
-      <header><h2><?php echo $event['title']; ?></h2></header>
-      <dl>
-        <dt>code</dt><dd><?php echo $event['code'];?></dd>
-        <dt>content</dt><dd><?php echo $event['content'];?></dd>
-        <dt>practical</dt><dd><?php echo $event['practical'];?></dd>
-      <dt>location</dt><dd><?php echo $event['location'];?></dd>
-        <dt>address</dt><dd><?php echo $event['address'];?></dd>
-        <dt>postal</dt><dd><?php echo $event['postal'];?></dd>
-        <dt>city</dt><dd><?php echo $event['city'];?></dd>
-        <dt>start</dt><dd><?php echo $event['start'];?></dd>
-        <dt>end</dt><dd><?php echo $event['end'];?></dd>
-          <dt>link</dt><dd><?php echo $event['link'];?></dd>
-        <dt>organisers</dt><dd><ul><?php foreach($event['organisers'] as $organiser): ?><li><?php echo $organiser['name'];?></li><?php endforeach;?></ul></dd>
-        <dt>tags</dt><dd><ul><?php foreach($event['tags'] as $tag): ?><li><?php echo $tag['tag'];?></li><?php endforeach;?></ul></dd>
-      </dl>
-    </article> -->
-  <? endforeach;?>
+<section class="map">
+  <img class="map" src="./assets/img/map.jpg" alt="belgium">
+  <form class="location-filter-form" action="index.html" method="post">
+    <div class="location-filter-container">
+      <div class="location-filter-errors"></div>
+      <input class="location-filter" type="text" name="location" value="">
+      <label class="location-filter-label" for="location">Zoek op locatie!</label>
+    </div>
+  </form>
+</section>
+<section class="events-container">
   <section class="cards">
     <div class="selected-tags"></div>
-    <!-- <div class="tag-filter">
-      <?php foreach($tags as $tag): ?>
-        <p class="tag tag-filter-tag"><?php echo $tag['tag']; ?></p>
-      <?php endforeach; ?>
-    </div> -->
     <div class="tag-filter">
-      <!-- <ul class="tag-filter-tags"> -->
         <?php foreach($tags as $tag): ?>
           <li class="tag tag-filter-tag"><?php echo $tag['tag']; ?></li>
         <?php endforeach; ?>
-      <!-- </ul> -->
     </div>
     <form class="date-filter" action="/events" method="post">
       <input class="date-filter-day" type="checkbox" name="16" value="16">

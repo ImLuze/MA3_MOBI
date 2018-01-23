@@ -28,25 +28,25 @@
     align-items: center;
   }
 
-  --white-bodycopy {
+  --white-bodycopy: {
     color: white;
     font-family: Helvetica;
     font-size: 1.4rem;
   }
 
-  --red-bodycopy {
+  --red-bodycopy: {
     color: var(--red);
     font-family: Helvetica;
     font-size: 1.4rem;
   }
 
-  --link {
+  --link: {
     text-decoration: none;
     text-transform: uppercase;
     font-weight: bold;
   }
 
-  --read-more-arrow {
+  --read-more-arrow: {
     content: ' ';
     display: block;
     background-color: var(--red);
@@ -54,9 +54,18 @@
     width: 2rem;
   }
 
+  --fixed-filter: {
+    position: fixed;
+    margin: 0;
+    margin-left: .5rem;
+    z-index: 4;
+  }
+
   --red: #ff4064;
   --dark-red: #db2e4e;
   --bg-color: #f9f9f9;
+  --100vw: calc(100vw - 2rem);
+  --card-width: calc(( 100vw - 4rem ) / 2);
   --image-width-offset: calc(( ( 100vw - 4rem ) / 2 ) - 2rem);
   --image-top-offset: calc(((-68.5rem + ( ( 100vw - 4rem ) / 2 ) - 2rem) / 3) + 1rem);
 

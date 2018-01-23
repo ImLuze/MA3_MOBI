@@ -1,3 +1,5 @@
+import {Input} from './lib/input-label-merge';
+
 NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
   for(let i = this.length - 1; i >= 0; i--) {
     if(this[i] && this[i].parentElement) {
@@ -46,7 +48,7 @@ const setupHoverFollower = () => {
 const isAtTop = (bottomEl, topEl, distance) => {
   const bottomElRect = bottomEl.getBoundingClientRect();
   const topElRect = topEl.getBoundingClientRect();
-  // console.log(bottomElRect.top, topElRect.bottom);
+
   if(bottomElRect.top <= (topElRect.bottom + distance)) {
     return true;
   } else {
@@ -114,66 +116,6 @@ const checkIfVisible = (container, elem) => {
     return false;
   }
 };
-
-// const addBtns = (lessBtn, moreBtn, container, tags) => {
-//   if(checkIfVisible(container, tags[0])) {
-//     lessBtn.style.visibility = `hidden`;
-//     moreBtn.style.visibility = `visible`;
-//   } else {
-//     console.log(`false`);
-//     lessBtn.style.visibility = `visible`;
-//   }
-//
-//   if(checkIfVisible(container, tags[tags.length - 1])) {
-//     moreBtn.style.visibility = `hidden`;
-//     lessBtn.style.visibility = `visible`;
-//   } else {
-//     moreBtn.style.visibility = `visible`;
-//   }
-// };
-
-// const setupTagSlider = () => {
-//   const lessBtn = document.querySelectorAll(`.less-slider-btn`)[0];
-//   const moreBtn = document.querySelectorAll(`.more-slider-btn`)[0];
-//   const container = document.querySelectorAll(`.tag-filter-tags`)[0];
-//   const tags = document.querySelectorAll(`.tag-filter-tag`);
-//
-//   let clicks = 0;
-//   const speed = 10;
-//
-//   addBtns(lessBtn, moreBtn, container, tags);
-//
-//   lessBtn.addEventListener(`click`, () => {
-//     clicks--;
-//
-//     for(let i = 0; i < tags.length; i++) {
-//       tags[i].style.marginLeft = `-${clicks * speed}rem`;
-//       tags[i].style.marginRight = `${clicks * speed}.1rem`;
-//
-//       if(clicks < 0) {
-//         clicks = 0;
-//         tags[i].style.marginLeft = 0;
-//         tags[i].style.marginRight = 0;
-//       }
-//     }
-//
-//     setTimeout(() => {
-//       addBtns(lessBtn, moreBtn, container, tags);
-//     }, 300);
-//   });
-//
-//   moreBtn.addEventListener(`click`, () => {
-//     clicks++;
-//
-//     for(let i = 0; i < tags.length; i++) {
-//       tags[i].style.marginLeft = `-${clicks * speed}rem`;
-//       tags[i].style.marginRight = `${clicks * speed}.1rem`;
-//     }
-//     setTimeout(() => {
-//       addBtns(lessBtn, moreBtn, container, tags);
-//     }, 300);
-//   });
-// };
 
 const addEventListenerToTag = tag => {
   let container;
@@ -245,6 +187,63 @@ const setupTags = () => {
   }
 };
 
+const changeDateFilterText = () => {
+  const days = document.querySelectorAll(`.date-filter-day-label p:nth-child(2)`);
+
+  if(window.innerWidth < 600) {
+    console.log(days);
+    for(let i = 0; i < days.length; i++) {
+      console.log(days[i]);
+      days[i].innerText = `sept`;
+    }
+  }
+};
+
+const scrollOffset = () => {
+  const doc = document, w = window;
+  let x, y, docEl;
+
+  if ( typeof w.pageYOffset === `number` ) {
+    x = w.pageXOffset;
+    y = w.pageYOffset;
+  } else {
+    docEl = (doc.compatMode && doc.compatMode === `CSS1Compat`) ?
+      doc.documentElement : doc.body;
+    x = docEl.scrollLeft;
+    y = docEl.scrollTop;
+  }
+  return {x: x, y: y};
+};
+
+const setupFadingMap = () => {
+  let opacity;
+  const map = document.querySelectorAll(`.map`)[0];
+  const belgium = document.querySelectorAll(`.map`)[1];
+  const mapRect = map.getBoundingClientRect();
+
+  window.addEventListener(`scroll`, () => {
+    opacity = 1 - ((scrollOffset().y) / 500);
+    map.style.filter = `opacity(${opacity})`;
+    belgium.style.width = `${mapRect.width - (scrollOffset().y / 2)}px`;
+
+    if(opacity < 0) {
+      map.style.filter = `opacity(0)`;
+    }
+  });
+};
+
+const setupInputLabelMerge = () => {
+  const input = document.querySelectorAll(`.location-filter`)[0];
+  const label = document.querySelectorAll(`.location-filter-label`)[0];
+  const errorsContainer = document.querySelectorAll(`.location-filter-errors`)[0];
+
+  const inputLabelMerge = new Input(input, label);
+  inputLabelMerge.checkRegex(/^[A-Za-z-\s]+$/, `U mag enkel a-z & A-Z characters gebruiken.`, errorsContainer);
+  inputLabelMerge.minLength(3, `Je moet minstens 3 tekens gebruiken.`, errorsContainer);
+  inputLabelMerge.maxLength(20, `Je mag maximum 20 tekens gebruiken.`, errorsContainer);
+  console.log(inputLabelMerge.regexErrContainer);
+};
+
 const init = () => {
   setupHoverFollower();
   setupFixedFilter();
@@ -252,6 +251,9 @@ const init = () => {
   // setupTagSlider();
   setupTags();
   setupTagSelection();
+  changeDateFilterText();
+  setupFadingMap();
+  setupInputLabelMerge();
 };
 
 init();
