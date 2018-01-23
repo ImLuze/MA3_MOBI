@@ -437,6 +437,7 @@ mark {
 .map {
   width: 100vw;
   margin-top: -5rem;
+  position: fixed;
 }
 
 @media (max-width: 1200px) {
