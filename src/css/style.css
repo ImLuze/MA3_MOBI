@@ -357,7 +357,7 @@ mark {
 }
 
 .date-filter-day:hover, .date-filter-day:checked {
-  background-color: #db2e4e;
+  background-color: var(--dark-red);
 }
 
 .date-filter-day:hover + .date-filter-day-label p:first-child, .date-filter-day:checked + .date-filter-day-label p:first-child {
@@ -411,7 +411,7 @@ mark {
   align-items: center;
   z-index: 3;
   color: var(--red);
-  background-color: #f9f9f9;
+  background-color: var(--bg-color);
   cursor: pointer;
   visibility: hidden;
 }
@@ -428,7 +428,7 @@ mark {
 }
 
 .tag-filter-tag:hover, .selected-tag:hover {
-  background-color: #db2e4e;
+  background-color: var(--dark-red);
   transition: background-color .3s;
 }
 

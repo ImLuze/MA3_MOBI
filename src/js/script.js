@@ -245,6 +245,18 @@ const setupTags = () => {
   }
 };
 
+const changeDateFilterText = () => {
+  const days = document.querySelectorAll(`.date-filter-day-label p:nth-child(2)`);
+
+  if(window.innerWidth < 600) {
+    console.log(days);
+    for(let i = 0; i < days.length; i++) {
+      console.log(days[i]);
+      days[i].innerText = `sept`;
+    }
+  }
+};
+
 const init = () => {
   setupHoverFollower();
   setupFixedFilter();
@@ -252,6 +264,7 @@ const init = () => {
   // setupTagSlider();
   setupTags();
   setupTagSelection();
+  changeDateFilterText();
 };
 
 init();
