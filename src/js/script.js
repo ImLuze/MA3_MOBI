@@ -33,18 +33,6 @@ const setupHoverFollower = () => {
   navigation[0].addEventListener(`mouseleave`, checkActiveLink);
 };
 
-// const isInViewport = (e, elem) => {
-//   const rect = elem.getBoundingClientRect();
-//   const html = document.documentElement;
-//
-//   return (
-//     rect.top >= 0 &&
-//     rect.left >= 0 &&
-//     rect.bottom <= ((window.innerHeight) || (html.clientHeight)) &&
-//     rect.right <= ((window.innerWidth) || (html.clientWidth))
-//   );
-// };
-
 const isAtTop = (bottomEl, topEl, distance) => {
   const bottomElRect = bottomEl.getBoundingClientRect();
   const topElRect = topEl.getBoundingClientRect();
@@ -110,7 +98,6 @@ const checkIfVisible = (container, elem) => {
   const containerRect = container.getBoundingClientRect();
 
   if(elemRect.x >= containerRect.x && (elemRect.x + elemRect.width) <= (containerRect.x + containerRect.width)) {
-    console.log(elemRect.x);
     return true;
   } else {
     return false;
@@ -119,8 +106,6 @@ const checkIfVisible = (container, elem) => {
 
 const addEventListenerToTag = tag => {
   let container;
-
-  console.log(tag);
 
   tag.addEventListener(`click`, () => {
     const newTag = document.createElement(`p`);
@@ -133,8 +118,6 @@ const addEventListenerToTag = tag => {
       newTag.classList.add(`selected-tag`);
       container = document.querySelectorAll(`.selected-tags`)[0];
     }
-
-    console.log(container);
 
     newTag.innerText = tag.innerText;
     addEventListenerToTag(newTag);
@@ -163,7 +146,6 @@ const setupTagSelection = () => {
   }
 
   for(let i = 0; i < selectedTags.length; i++) {
-    console.log(selectedTags[i]);
     selectedTags[i].addEventListener(`click`, () => {
       const tag = document.createElement(`p`);
       tag.classList.add(`tag`);
@@ -191,9 +173,7 @@ const changeDateFilterText = () => {
   const days = document.querySelectorAll(`.date-filter-day-label p:nth-child(2)`);
 
   if(window.innerWidth < 600) {
-    console.log(days);
     for(let i = 0; i < days.length; i++) {
-      console.log(days[i]);
       days[i].innerText = `sept`;
     }
   }
@@ -241,19 +221,37 @@ const setupInputLabelMerge = () => {
   inputLabelMerge.checkRegex(/^[A-Za-z-\s]+$/, `U mag enkel a-z & A-Z characters gebruiken.`, errorsContainer);
   inputLabelMerge.minLength(3, `Je moet minstens 3 tekens gebruiken.`, errorsContainer);
   inputLabelMerge.maxLength(20, `Je mag maximum 20 tekens gebruiken.`, errorsContainer);
-  console.log(inputLabelMerge.regexErrContainer);
+};
+
+const getDistanceBetween = (elem1, elem2) => {
+  const rect1 = elem1.getBoundingClientRect();
+  const rect2 = elem2.getBoundingClientRect();
+  return rect1.bottom - rect2.top;
+};
+
+const setupCardsUI = () => {
+  const cards = document.querySelectorAll(`.card`);
+  const readMore = document.querySelectorAll(`.read-more`);
+
+  for(let i = 0; i < cards.length - 2; i++) {
+    const marginBottom = -getDistanceBetween(readMore[i], cards[i + 2]) - 15;
+    cards[i].style.marginBottom = `${marginBottom}px`;
+
+    const marginTop = getDistanceBetween(cards[i], cards[i + 2]) + 15;
+    cards[i + 2].style.marginTop = `${marginTop}px`;
+  }
 };
 
 const init = () => {
   setupHoverFollower();
   setupFixedFilter();
   setupDateFilterLabels();
-  // setupTagSlider();
   setupTags();
   setupTagSelection();
   changeDateFilterText();
   setupFadingMap();
   setupInputLabelMerge();
+  setupCardsUI();
 };
 
 init();

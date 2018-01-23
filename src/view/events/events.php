@@ -55,7 +55,7 @@
     </form>
     <?php foreach($events as $event): ?>
       <?php if(file_exists('./assets/img/photos/'.$event['code'])): ?>
-        <article class="card-photo">
+        <article class="card-photo card">
           <div class="timestamp">
             <p><?php echo date('j', strtotime($event['start'])); ?></p>
             <p><?php echo date('M', strtotime($event['start'])); ?></p>
@@ -89,7 +89,7 @@
           <a class="read-more" href="#">Meer info</a>
         </article>
       <?php else: ?>
-        <article class="card-small">
+        <article class="card-small card">
           <div class="timestamp">
             <p><?php echo date('j', strtotime($event['start'])); ?></p>
             <p><?php echo date('M', strtotime($event['start'])); ?></p>
