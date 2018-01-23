@@ -3,7 +3,7 @@
 
 body {
   @apply --flex-column-center;
-  background-color: #f9f9f9;
+  background-color: var(--bg-color);
 }
 
 h2 {
@@ -23,14 +23,12 @@ mark {
 }
 
 .navigation {
-  width: calc(100vw - 2rem);
+  @apply --flex-space-between;
+  width: var(--100vw);
   height: 6rem;
   background-color: var(--red);
   margin-top: 1rem;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 0 6rem;
   position: fixed;
   top: 0;
@@ -39,9 +37,7 @@ mark {
 }
 
 .navigation-list {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @apply --flex-space-between;
   width: 62rem;
   height: 100%;
 }
@@ -52,9 +48,7 @@ mark {
 }
 
 .navigation-lang {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @apply --flex-space-between;
   width: 5rem;
   height: 100%;
 }
@@ -181,7 +175,7 @@ mark {
 }
 
 .cards {
-  width: calc(100vw - 2rem);
+  width: var(--100vw);
   max-width: 98rem;
   margin-top: 10rem;
   display: flex;
@@ -191,7 +185,7 @@ mark {
 
 .card-small {
   @apply --red-bodycopy;
-  width: calc(( 100vw - 4rem ) / 2);
+  width: var(--card-width);
   max-width: 48rem;
   background-color: white;
   padding: 3.6rem 4.4rem 1rem;
@@ -207,7 +201,7 @@ mark {
 
 .card-photo {
   @apply --red-bodycopy;
-  width: calc(( 100vw - 4rem ) / 2);
+  width: var(--card-width);
   max-width: 48rem;
   background-color: white;
   padding: 3.6rem 4.4rem 1rem;
@@ -239,12 +233,12 @@ mark {
 }
 
 .card-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   position: relative;
   margin-top: -6.5rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .card-img::after {
@@ -266,7 +260,6 @@ mark {
 .card-img h2 {
   position: absolute;
   text-align: center;
-  /* background-color: white; */
   padding: .5rem 0;
   z-index: 2;
 }
@@ -306,19 +299,16 @@ mark {
 .read-more {
   @apply --red-bodycopy;
   @apply --link;
+  @apply --flex-space-between;
   font-weight: lighter;
   margin-left: calc(( ( 100vw - 5rem ) / 2 ) - 20rem);
   margin-top: 4rem;
-  display: flex;
   width: 12rem;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .date-filter {
-  display: flex;
-  justify-content: space-between;
-  width: calc(100vw - 2rem);
+  @apply --flex-space-between;
+  width: var(--100vw);
   max-width: 97rem;
   margin: 0 .5rem;
 }
@@ -328,9 +318,7 @@ mark {
 }
 
 .date-filter-fixed {
-  position: fixed;
-  z-index: 4;
-  margin: 0;
+  @apply --fixed-filter;
   margin-top: -70.8rem;
 }
 
@@ -350,7 +338,7 @@ mark {
   margin: 0;
 
   background-color: var(--red);
-  width: calc((( 100vw - 2rem) / 7 ) - .1rem);
+  width: calc((var(--100vw) / 7 ) - .1rem);
   max-width: calc(( 97rem / 7 ) - .1rem);
   height: 8rem;
   transition: height .3s;
@@ -370,16 +358,14 @@ mark {
 
 .date-filter-day-label {
   @apply --white-bodycopy;
+  @apply --flex-column-center;
   position: absolute;
   font-weight: bold;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: calc((( 100vw - 2rem) / 7 ) - .1rem);
+  width: calc((var(--100vw) / 7 ) - .1rem);
   max-width: calc(( 97rem / 7 ) - .1rem);
   height: 8rem;
-  margin-left: calc(( 100vw - 2rem) / 7);
+  margin-left: calc(var(--100vw) / 7);
   pointer-events: none;
 }
 
@@ -400,24 +386,9 @@ mark {
   margin: 0 .5rem .1rem;
   display: flex;
   justify-content: center;
-  width: calc(100vw - 2rem);
+  width: var(--100vw);
   max-width: 97rem;
   overflow: hidden;
-}
-
-.less-slider-btn, .more-slider-btn {
-  width: 4rem;
-  display: flex;
-  align-items: center;
-  z-index: 3;
-  color: var(--red);
-  background-color: var(--bg-color);
-  cursor: pointer;
-  visibility: hidden;
-}
-
-.more-slider-btn {
-  justify-content: flex-end;
 }
 
 .tag-filter-tag, .selected-tag {
@@ -433,14 +404,12 @@ mark {
 }
 
 .tag-filter-fixed {
-  position: fixed;
-  margin: 0;
+  @apply --fixed-filter;
   margin-top: -64.8rem;
-  z-index: 4;
 }
 
 .selected-tags {
-  width: calc(100vw - 2rem);
+  width: var(--100vw);
   max-width: 97rem;
   display: flex;
   justify-content: center;
@@ -448,15 +417,20 @@ mark {
 }
 
 .selected-tags-fixed {
-  position: fixed;
-  margin: 0;
+  @apply --fixed-filter;
   margin-top: -61.7rem;
-  z-index: 4;
+}
+
+.selected-tag {
+  display: flex;
+  height: 3rem;
 }
 
 .selected-tag::after {
-  content: '';
+  content: 'x';
+  text-align: right;
   display: block;
+  width: 2rem;
   /* background: url(../assets/svg/cross.svg); */
 }
 
@@ -495,6 +469,13 @@ mark {
   }
 }
 
+@media (max-width: 970px) {
+
+  .date-filter-fixed, .tag-filter-fixed, .selected-tags-fixed {
+    margin-left: 0;
+  }
+}
+
 @media (max-width: 850px) {
 
   .navigation-list {
@@ -517,8 +498,9 @@ mark {
   }
 
   .card-small, .card-photo {
-    width: calc(100vw - 4rem);
+    width: var(--100vw);
     max-width: none;
+    margin-left: 0;
   }
 
   .read-more {
@@ -526,7 +508,7 @@ mark {
   }
 
   .timestamp {
-    margin: -3.6rem 0 0 calc(( 100vw - 4rem ) - 12.4rem);
+    margin: -3.6rem 0 0 calc(var(--100vw) - 12.4rem);
   }
 
   .card-img {
@@ -534,16 +516,16 @@ mark {
   }
 
   .card-img img {
-    width: calc(( 100vw - 4rem ) - 2rem);
+    width: calc(var(--100vw) - 2rem);
   }
 
   .card-img::after {
-    width: calc(( 100vw - 4rem ) - 2rem);
+    width: calc(var(--100vw) - 2rem);
     margin-top: calc(( 100vw - 36.1rem) / 2.5);
   }
 
   .card-photo h2 {
-    width: calc(( 100vw - 4rem ) - 12.4rem);
+    width: calc(var(--100vw) - 12.4rem);
     max-width: none;
   }
 

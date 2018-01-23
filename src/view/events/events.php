@@ -2,17 +2,10 @@
 <section class="events-container">
   <section class="cards">
     <div class="selected-tags"></div>
-    <!-- <div class="tag-filter">
-      <?php foreach($tags as $tag): ?>
-        <p class="tag tag-filter-tag"><?php echo $tag['tag']; ?></p>
-      <?php endforeach; ?>
-    </div> -->
     <div class="tag-filter">
-      <!-- <ul class="tag-filter-tags"> -->
         <?php foreach($tags as $tag): ?>
           <li class="tag tag-filter-tag"><?php echo $tag['tag']; ?></li>
         <?php endforeach; ?>
-      <!-- </ul> -->
     </div>
     <form class="date-filter" action="/events" method="post">
       <input class="date-filter-day" type="checkbox" name="16" value="16">
