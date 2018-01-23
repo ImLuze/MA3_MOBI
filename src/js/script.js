@@ -1,3 +1,5 @@
+import {Input} from './lib/input-label-merge';
+
 NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
   for(let i = this.length - 1; i >= 0; i--) {
     if(this[i] && this[i].parentElement) {
@@ -216,11 +218,30 @@ const scrollOffset = () => {
 const setupFadingMap = () => {
   let opacity;
   const map = document.querySelectorAll(`.map`)[0];
+  const belgium = document.querySelectorAll(`.map`)[1];
+  const mapRect = map.getBoundingClientRect();
 
   window.addEventListener(`scroll`, () => {
     opacity = 1 - ((scrollOffset().y) / 500);
     map.style.filter = `opacity(${opacity})`;
+    belgium.style.width = `${mapRect.width - (scrollOffset().y / 2)}px`;
+
+    if(opacity < 0) {
+      map.style.filter = `opacity(0)`;
+    }
   });
+};
+
+const setupInputLabelMerge = () => {
+  const input = document.querySelectorAll(`.location-filter`)[0];
+  const label = document.querySelectorAll(`.location-filter-label`)[0];
+  const errorsContainer = document.querySelectorAll(`.location-filter-errors`)[0];
+
+  const inputLabelMerge = new Input(input, label);
+  inputLabelMerge.checkRegex(/^[A-Za-z-\s]+$/, `U mag enkel a-z & A-Z characters gebruiken.`, errorsContainer);
+  inputLabelMerge.minLength(3, `Je moet minstens 3 tekens gebruiken.`, errorsContainer);
+  inputLabelMerge.maxLength(20, `Je mag maximum 20 tekens gebruiken.`, errorsContainer);
+  console.log(inputLabelMerge.regexErrContainer);
 };
 
 const init = () => {
@@ -232,6 +253,7 @@ const init = () => {
   setupTagSelection();
   changeDateFilterText();
   setupFadingMap();
+  setupInputLabelMerge();
 };
 
 init();

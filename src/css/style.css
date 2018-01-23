@@ -436,8 +436,69 @@ mark {
 
 .map {
   width: 100vw;
-  margin-top: -5rem;
+  margin-top: -3rem;
   position: fixed;
+
+  display: flex;
+  justify-content: center;
+}
+
+.location-filter {
+  @apply --white-bodycopy;
+  width: 30vw;
+  height: 4rem;
+
+  outline: none;
+  background-color: var(--red);
+  border: none;
+  padding: 1rem;
+
+  transition: margin .3s, background-color .3s;
+}
+
+.location-filter-form {
+  margin-top: 36rem;
+}
+
+.location-filter-container {
+  @apply --flex-column;
+  justify-content: center;
+  align-items: left;
+  position: relative;
+  height: 6rem;
+
+  transition: height .3s, margin .3s;
+}
+
+.location-filter:hover {
+  background-color: var(--dark-red);
+  transition: background-color .3s;
+}
+
+.location-filter:focus {
+  margin-top: -3.3rem;
+  background-color: var(--dark-red);
+  transition: margin .3s, background-color .3s;
+}
+
+.location-filter:focus + .location-filter-label {
+  margin-top: -6rem;
+  color: var(--red);
+  font-weight: bold;
+  transition: margin .3s, color .3s;
+}
+
+.location-filter-label {
+  @apply --white-bodycopy;
+  pointer-events: none;
+  margin: -2.7rem 0 0 1rem;
+  transition: margin .3s, color .3s;
+}
+
+.location-filter-errors {
+  @apply --white-bodycopy;
+  color: red;
+  margin: 1rem;
 }
 
 @media (max-width: 1200px) {
@@ -451,7 +512,8 @@ mark {
 
   .map {
     width: 140vw;
-    margin-left: 8rem;
+    margin-left: 2rem;
+    margin-top: 0;
   }
 }
 
@@ -532,7 +594,7 @@ mark {
 
   .map {
     width: 160vw;
-    margin-top: 0;
+    /* margin-top: 0; */
   }
 }
 

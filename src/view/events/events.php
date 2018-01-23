@@ -1,4 +1,13 @@
-<img class="map" src="./assets/img/map.jpg" alt="belgium">
+<section class="map">
+  <img class="map" src="./assets/img/map.jpg" alt="belgium">
+  <form class="location-filter-form" action="index.html" method="post">
+    <div class="location-filter-container">
+      <div class="location-filter-errors"></div>
+      <input class="location-filter" type="text" name="location" value="">
+      <label class="location-filter-label" for="location">Zoek op locatie!</label>
+    </div>
+  </form>
+</section>
 <section class="events-container">
   <section class="cards">
     <div class="selected-tags"></div>
