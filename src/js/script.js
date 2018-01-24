@@ -246,6 +246,7 @@ const setupCardsUI = () => {
 
 const setupAjaxRequest = () => {
   const location = document.querySelectorAll(`.location-filter`)[0];
+  const container = document.querySelectorAll(`.location-filter-hints`)[0];
 
   location.addEventListener(`input`, () => {
     if(location.value !== ``) {
@@ -255,7 +256,24 @@ const setupAjaxRequest = () => {
 
       xmlhttp.onreadystatechange = () => {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-          document.querySelectorAll(`.location-filter-hints`)[0].innerHTML = xmlhttp.responseText.split(`<`)[0];
+          const response = xmlhttp.responseText.split(`<`)[0];
+          const hints = response.split(`, `);
+
+          container.innerHTML = ``;
+
+          for(let i = 0; i < hints.length; i++) {
+            const hint = document.createElement(`p`);
+            hint.classList.add(`location-filter-hint`);
+            hint.innerText = hints[i];
+
+            console.log(location.value);
+            hint.addEventListener(`click`, () => {
+              location.focus();
+              location.value = hint.innerText;
+            });
+
+            container.appendChild(hint);
+          }
         }
       };
 
