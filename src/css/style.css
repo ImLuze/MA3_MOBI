@@ -327,7 +327,7 @@ mark {
   transition: height .3s;
 }
 
-.date-filter-fixed .date-filter-day-label p:first-child {
+.date-filter-fixed .date-filter-day-label p:nth-child(2) {
   font-size: 3.6rem;
   transition: font-size .3s;
 }
@@ -348,11 +348,11 @@ mark {
   background-color: var(--dark-red);
 }
 
-.date-filter-day:hover + .date-filter-day-label p:first-child, .date-filter-day:checked + .date-filter-day-label p:first-child {
+.date-filter-day:hover + .date-filter-day-label p:nth-child(2), .date-filter-day:checked + .date-filter-day-label p:nth-child(2) {
   font-size: 6rem;
 }
 
-.date-filter-fixed .date-filter-day:hover + .date-filter-day-label p:first-child, .date-filter-fixed .date-filter-day:checked + .date-filter-day-label p:first-child {
+.date-filter-fixed .date-filter-day:hover + .date-filter-day-label p:nth-child(2), .date-filter-fixed .date-filter-day:checked + .date-filter-day-label p:nth-child(2) {
   font-size: 4.2rem;
 }
 
@@ -369,7 +369,7 @@ mark {
   pointer-events: none;
 }
 
-.date-filter-day-label p:first-child {
+.date-filter-day-label p:nth-child(2) {
   font-size: 4.8rem;
   transition: font-size .3s;
 }

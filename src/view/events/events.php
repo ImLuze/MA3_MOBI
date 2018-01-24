@@ -19,36 +19,43 @@
     <form class="date-filter" action="/events" method="post">
       <input class="date-filter-day" type="checkbox" name="16" value="16">
       <label class="date-filter-day-label" for="16">
+        <p>Zon</p>
         <p>16</p>
         <p>september</p>
       </label>
       <input class="date-filter-day" type="checkbox" name="17" value="17">
       <label class="date-filter-day-label" for="17">
+        <p>Maan</p>
         <p>17</p>
         <p>september</p>
       </label>
       <input class="date-filter-day" type="checkbox" name="18" value="18">
       <label class="date-filter-day-label" for="18">
+        <p>Di</p>
         <p>18</p>
         <p>september</p>
       </label>
       <input class="date-filter-day" type="checkbox" name="19" value="19">
       <label class="date-filter-day-label" for="19">
+        <p>Woe</p>
         <p>19</p>
         <p>september</p>
       </label>
       <input class="date-filter-day" type="checkbox" name="20" value="20">
       <label class="date-filter-day-label" for="20">
+        <p>Don</p>
         <p>20</p>
         <p>september</p>
       </label>
       <input class="date-filter-day" type="checkbox" name="21" value="21">
       <label class="date-filter-day-label" for="21">
+        <p>Vrij</p>
         <p>21</p>
         <p>september</p>
       </label>
       <input class="date-filter-day" type="checkbox" name="22" value="22">
       <label class="date-filter-day-label" for="22">
+        <p>Zat</p>
         <p>22</p>
         <p>september</p>
       </label>

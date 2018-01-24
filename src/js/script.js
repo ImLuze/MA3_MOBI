@@ -170,7 +170,7 @@ const setupTags = () => {
 };
 
 const changeDateFilterText = () => {
-  const days = document.querySelectorAll(`.date-filter-day-label p:nth-child(2)`);
+  const days = document.querySelectorAll(`.date-filter-day-label p:nth-child(3)`);
 
   if(window.innerWidth < 600) {
     for(let i = 0; i < days.length; i++) {
@@ -233,12 +233,14 @@ const setupCardsUI = () => {
   const cards = document.querySelectorAll(`.card`);
   const readMore = document.querySelectorAll(`.read-more`);
 
-  for(let i = 0; i < cards.length - 2; i++) {
-    const marginBottom = -getDistanceBetween(readMore[i], cards[i + 2]) - 15;
-    cards[i].style.marginBottom = `${marginBottom}px`;
+  if(window.innerWidth > 800) {
+    for(let i = 0; i < cards.length - 2; i++) {
+      const marginBottom = -getDistanceBetween(readMore[i], cards[i + 2]) - 15;
+      cards[i].style.marginBottom = `${marginBottom}px`;
 
-    const marginTop = getDistanceBetween(cards[i], cards[i + 2]) + 15;
-    cards[i + 2].style.marginTop = `${marginTop}px`;
+      const marginTop = getDistanceBetween(cards[i], cards[i + 2]) + 15;
+      cards[i + 2].style.marginTop = `${marginTop}px`;
+    }
   }
 };
 
