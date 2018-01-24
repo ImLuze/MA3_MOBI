@@ -16,6 +16,9 @@ class EventsController extends Controller {
   }
 
   public function events() {
+
+    $this->getLocation();
+
     $conditions = array();
 
     //example: search on title
@@ -87,6 +90,46 @@ class EventsController extends Controller {
 
     $tags = $this->eventDAO->selectAllTags();
     $this->set('tags', $tags);
+  }
+
+  private function getLocation() {
+
+    $locationArray = ['Brugge', 'Antwerpen', 'Kortrijk', 'Sint-Niklaas', 'Brussel', 'Watermaal-Bosvoorde', 'Laken', 'Sint-Joost-Ten-Noode', 'Elsene', 'Ieper'];
+
+    $a[] = "Brugge";
+    $a[] = "Antwerpen";
+    $a[] = "Kortrijk";
+    $a[] = "Sint-Niklaas";
+    $a[] = "Brussel";
+    $a[] = "Watermaal-Bosvoorde";
+    $a[] = "Laken";
+    $a[] = "Sint-Joost-Ten-Noorde";
+    $a[] = "Elsene";
+    $a[] = "Ieper";
+
+    if(!empty($_REQUEST['loc'])) {
+      $loc = $_REQUEST["loc"];
+    } else {
+      $loc = "";
+    }
+
+    $hint = "";
+
+    if ($loc !== "") {
+        $loc = strtolower($loc);
+        $len=strlen($loc);
+        foreach($locationArray as $location) {
+            if (stristr($loc, substr($location, 0, $len))) {
+                if ($hint === "") {
+                    $hint = $location;
+                } else {
+                    $hint .= ", $location";
+                }
+            }
+        }
+    }
+
+    echo $hint === "" ? "no suggestion" : $hint;
   }
 
 }

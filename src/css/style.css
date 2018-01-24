@@ -501,6 +501,22 @@ mark {
   margin: 1rem;
 }
 
+.location-filter-hints {
+  @apply --white-bodycopy;
+  background-color: var(--red);
+  margin-top: 1.4rem;
+  width: 30rem;
+  padding: .5rem 1rem;
+  opacity: 0;
+  transition: opacity .3s, margin-top .3s;
+}
+
+.location-filter:focus + .location-filter-label + .location-filter-hints {
+  opacity: 1;
+  margin-top: 4.7rem;
+  transition: opacity .3s, margin-top .3s;
+}
+
 @media (max-width: 1200px) {
 
   .map {

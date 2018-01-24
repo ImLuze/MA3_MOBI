@@ -244,6 +244,27 @@ const setupCardsUI = () => {
   }
 };
 
+const setupAjaxRequest = () => {
+  const location = document.querySelectorAll(`.location-filter`)[0];
+
+  location.addEventListener(`input`, () => {
+    if(location.value !== ``) {
+      const xmlhttp = new XMLHttpRequest(),
+        method = `GET`,
+        url = `/events&loc=${location.value}`;
+
+      xmlhttp.onreadystatechange = () => {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+          document.querySelectorAll(`.location-filter-hints`)[0].innerHTML = xmlhttp.responseText.split(`<`)[0];
+        }
+      };
+
+      xmlhttp.open(method, url, true);
+      xmlhttp.send();
+    }
+  });
+};
+
 const init = () => {
   setupHoverFollower();
   setupFixedFilter();
@@ -254,6 +275,7 @@ const init = () => {
   setupFadingMap();
   setupInputLabelMerge();
   setupCardsUI();
+  setupAjaxRequest();
 };
 
 init();

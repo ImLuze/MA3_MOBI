@@ -5,6 +5,7 @@
       <div class="location-filter-errors"></div>
       <input class="location-filter" type="text" name="location" value="">
       <label class="location-filter-label" for="location">Zoek op locatie!</label>
+      <div class="location-filter-hints"></div>
     </div>
   </form>
 </section>
