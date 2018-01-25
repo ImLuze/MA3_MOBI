@@ -161,7 +161,8 @@ const setupTagSelection = () => {
       tags[i].remove();
       selectedTags = document.querySelectorAll(`.selected-tag`);
 
-      filterOnTags();
+      // filterOnTags();
+      filter();
     });
   }
 
@@ -175,7 +176,8 @@ const setupTagSelection = () => {
       selectedTags[i].remove();
       tags = document.querySelectorAll(`.tag-filter-tag`);
 
-      filterOnTags();
+      // filterOnTags();
+      filter();
     });
   }
 };
@@ -425,59 +427,129 @@ const createCards = data => {
   }
 };
 
-const filterOnLocation = () => {
-  const location = document.querySelectorAll(`.location-filter`)[0];
-  const label = document.querySelectorAll(`.location-filter-label`)[0];
-  location.addEventListener(`focusout`, () => {
-    if(label.innerText !== ``) {
-      const xmlhttp = new XMLHttpRequest(),
-        method = `GET`,
-        url = `/events&showloc=true&loc=${label.innerText}`;
+// const filterOnLocation = () => {
+//   const location = document.querySelectorAll(`.location-filter`)[0];
+//   const label = document.querySelectorAll(`.location-filter-label`)[0];
+//   location.addEventListener(`focusout`, () => {
+//     if(label.innerText !== ``) {
+//       const xmlhttp = new XMLHttpRequest(),
+//         method = `GET`,
+//         url = `/events&showloc=true&loc=${label.innerText}`;
+//
+//       xmlhttp.onreadystatechange = () => {
+//         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+//           const json = xmlhttp.responseText.split(`<`)[0];
+//           const data = JSON.parse(json);
+//           createCards(data);
+//         }
+//       };
+//
+//       xmlhttp.open(method, url, true);
+//       xmlhttp.send();
+//     }
+//   });
+// };
+//
+// const filterOnTags = () => {
+//   const tags = document.querySelectorAll(`.selected-tag`);
+//   let query = ``;
+//
+//   for(let i = 0; i < tags.length; i++) {
+//     if(query === ``) {
+//       query = tags[i].innerText;
+//     } else {
+//       query = `${query}_${tags[i].innerText}`;
+//     }
+//     const xmlhttp = new XMLHttpRequest(),
+//       method = `GET`,
+//       url = `/events&showtag=true&tags=${query}`;
+//
+//     xmlhttp.onreadystatechange = () => {
+//       if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+//         const json = xmlhttp.responseText.split(`<`)[0];
+//         const data = JSON.parse(json);
+//         createCards(data);
+//       }
+//     };
+//
+//     xmlhttp.open(method, url, true);
+//     xmlhttp.send();
+//   }
+// };
 
-      xmlhttp.onreadystatechange = () => {
-        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-          const json = xmlhttp.responseText.split(`<`)[0];
-          const data = JSON.parse(json);
-          createCards(data);
-        }
-      };
+const xmlhttp = query => {
+  console.log(query);
 
-      xmlhttp.open(method, url, true);
-      xmlhttp.send();
+  const xmlhttp = new XMLHttpRequest(),
+    method = `GET`,
+    url = query;
+
+  xmlhttp.onreadystatechange = () => {
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+      console.log(xmlhttp);
+      const json = xmlhttp.responseText.split(`<`)[0];
+      const data = JSON.parse(json);
+      createCards(data);
     }
-  });
+  };
+
+  xmlhttp.open(method, url, true);
+  xmlhttp.send();
 };
 
-const filterOnTags = () => {
+const filter = () => {
   const tags = document.querySelectorAll(`.selected-tag`);
-  let query = ``;
+  const days = document.querySelectorAll(`.date-filter-day`);
+  const location = document.querySelectorAll(`.location-filter`)[0];
+  const label = document.querySelectorAll(`.location-filter-label`)[0];
+
+  let tagQuery = ``;
+  let dateQuery = ``;
+  let query = `/events&filter=true`;
+
+  console.log(query);
+
+  location.addEventListener(`focusout`, () => {
+    if(label.innerText !== ``) {
+      query = `${query}&loc=${label.innerText}`;
+    }
+
+    xmlhttp(query);
+  });
 
   for(let i = 0; i < tags.length; i++) {
-    if(query === ``) {
-      query = tags[i].innerText;
+    if(tagQuery === ``) {
+      tagQuery = tags[i].innerText;
     } else {
-      query = `${query}_${tags[i].innerText}`;
+      tagQuery = `${tagQuery}_${tags[i].innerText}`;
     }
-    const xmlhttp = new XMLHttpRequest(),
-      method = `GET`,
-      url = `/events&showtag=true&tags=${query}`;
+    query = `${query}&tags=${tagQuery}`;
 
-    xmlhttp.onreadystatechange = () => {
-      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-        const json = xmlhttp.responseText.split(`<`)[0];
-        const data = JSON.parse(json);
-        createCards(data);
-      }
-    };
-
-    xmlhttp.open(method, url, true);
-    xmlhttp.send();
+    xmlhttp(query);
   }
+
+  for(let i = 0; i < days.length; i++) {
+    days[i].addEventListener(`click`, () => {
+      if(days[i].checked === true) {
+        if(dateQuery === ``) {
+          dateQuery = days[i].value;
+        } else {
+          dateQuery = `${dateQuery}_${days[i].value}`;
+        }
+        query = `${query}&date=${dateQuery}`;
+
+        xmlhttp(query);
+      }
+    });
+  }
+
+
 };
 
 const setupAjaxRequest = () => {
   locationHints();
-  filterOnLocation();
+  // filterOnLocation();
+  filter();
 };
 
 const init = () => {

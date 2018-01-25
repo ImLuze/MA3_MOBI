@@ -57,6 +57,57 @@ class EventsController extends Controller {
       }
     }
 
+    if( !empty($_REQUEST['filter'])) {
+      if( !empty($_REQUEST['loc'])) {
+        $locationArray = ['Brugge', 'Antwerpen', 'Kortrijk', 'Sint-Niklaas', 'Brussel', 'Watermaal-Bosvoorde', 'Laken', 'Sint-Joost-Ten-Noode', 'Elsene', 'Ieper'];
+
+        foreach($locationArray as $location) {
+          if(stristr($_REQUEST['loc'], $location)) {
+
+            $conditions[] = array(
+              'field' => 'city',
+              'comparator' => '=',
+              'value' => $_REQUEST['loc']
+            );
+
+          }
+        }
+      }
+
+      if( !empty($_REQUEST['tags'])) {
+        $tags = explode('_', $_REQUEST['tags']);
+
+        foreach($tags as $tag) {
+
+          $conditions[] = array(
+            'field' => 'tag',
+            'comparator' => '=',
+            'value' => $tag
+          );
+
+        }
+      }
+
+      if( !empty($_REQUEST['date'])) {
+        $date = explode('_', $_REQUEST['date']);
+
+        foreach($date as $day) {
+
+          $conditions[] = array(
+            'field' => 'start',
+            'comparator' => '<=',
+            'value' => '2018-09-'.$day.' 23:59:59'
+          );
+          $conditions[] = array(
+            'field' => 'end',
+            'comparator' => '>=',
+            'value' => '2018-09-'.$day.' 00:00:00'
+          );
+
+        }
+      }
+    }
+
     //example: search on title
     // $conditions[] = array(
     //   'field' => 'title',
@@ -129,9 +180,10 @@ class EventsController extends Controller {
 
     $response = '';
 
-    if(!empty($_REQUEST['loc']) || !empty($_REQUEST['tags'])) {
+    if(!empty($_REQUEST['loc']) || !empty($_REQUEST['tags']) || !empty($_REQUEST['date'])) {
       header('Content-Type: application/json');
       $response = json_encode($events);
+      // print_r($events);
       echo $response;
       // print_r($conditions);
     }
