@@ -160,6 +160,8 @@ const setupTagSelection = () => {
       selectedTagsContainer.appendChild(tag);
       tags[i].remove();
       selectedTags = document.querySelectorAll(`.selected-tag`);
+
+      filterOnTags();
     });
   }
 
@@ -172,6 +174,8 @@ const setupTagSelection = () => {
       tagsContainer.appendChild(tag);
       selectedTags[i].remove();
       tags = document.querySelectorAll(`.tag-filter-tag`);
+
+      filterOnTags();
     });
   }
 };
@@ -442,6 +446,33 @@ const filterOnLocation = () => {
       xmlhttp.send();
     }
   });
+};
+
+const filterOnTags = () => {
+  const tags = document.querySelectorAll(`.selected-tag`);
+  let query = ``;
+
+  for(let i = 0; i < tags.length; i++) {
+    if(query === ``) {
+      query = tags[i].innerText;
+    } else {
+      query = `${query}_${tags[i].innerText}`;
+    }
+    const xmlhttp = new XMLHttpRequest(),
+      method = `GET`,
+      url = `/events&showtag=true&tags=${query}`;
+
+    xmlhttp.onreadystatechange = () => {
+      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+        const json = xmlhttp.responseText.split(`<`)[0];
+        const data = JSON.parse(json);
+        createCards(data);
+      }
+    };
+
+    xmlhttp.open(method, url, true);
+    xmlhttp.send();
+  }
 };
 
 const setupAjaxRequest = () => {

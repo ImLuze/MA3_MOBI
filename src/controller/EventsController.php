@@ -40,6 +40,23 @@ class EventsController extends Controller {
       }
     }
 
+    if( !empty($_REQUEST['showtag'])) {
+      $tags = explode('_', $_REQUEST['tags']);
+
+      foreach($tags as $tag) {
+
+        $conditions[] = array(
+          'field' => 'tag',
+          'comparator' => '=',
+          'value' => $tag
+        );
+
+        // print_r($conditions);
+        // print_r($this->eventDAO->search($conditions));
+
+      }
+    }
+
     //example: search on title
     // $conditions[] = array(
     //   'field' => 'title',
@@ -112,10 +129,11 @@ class EventsController extends Controller {
 
     $response = '';
 
-    if(!empty($_REQUEST['loc'])) {
+    if(!empty($_REQUEST['loc']) || !empty($_REQUEST['tags'])) {
       header('Content-Type: application/json');
       $response = json_encode($events);
       echo $response;
+      // print_r($conditions);
     }
   }
 
