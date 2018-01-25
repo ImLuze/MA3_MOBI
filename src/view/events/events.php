@@ -110,7 +110,7 @@
               <?php endforeach; ?>
             </div>
             <p class="card-bodycopy"><?php echo substr($event['content'], 0, 100).' ...'?></p>
-            <a class="read-more" href="#">Meer info</a>
+            <a class="read-more" href="/detail&id=<?php echo $event['id'] ?>">Meer info</a>
           </article>
         <?php endif; ?>
       <? endforeach;?>

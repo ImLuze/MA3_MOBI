@@ -218,4 +218,11 @@ class EventsController extends Controller {
     echo $hint === "" ? "no suggestion" : $hint;
   }
 
+  public function detail() {
+
+    $event = $this->eventDAO->selectById($_GET['id']);
+    $this->set('event', $event);
+    print_r($_GET['id']);
+  }
+
 }
