@@ -3,7 +3,7 @@
 require_once WWW_ROOT . 'controller' . DS . 'Controller.php';
 require_once WWW_ROOT . 'dao' . DS . 'EventDAO.php';
 
-class EventsController extends Controller {
+class SearchController extends Controller {
 
   private $eventDAO;
 
@@ -15,7 +15,7 @@ class EventsController extends Controller {
 
   }
 
-  public function events() {
+  public function search() {
 
     if( !empty($_REQUEST['getloc'])) {
       $this->getLocation();
@@ -110,12 +110,12 @@ class EventsController extends Controller {
     $tags = $this->eventDAO->selectAllTags();
     $this->set('tags', $tags);
 
-    $response = '';
-
     if(!empty($_REQUEST['loc'])) {
-      header('Content-Type: application/json');
-      $response = json_encode($events);
-      echo $response;
+      foreach($events as $event) {
+        header('Content-Type: application/json');
+        $response = json_encode($event);
+        echo $response;
+      }
     }
   }
 
