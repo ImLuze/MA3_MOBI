@@ -342,6 +342,12 @@ const createCard = (event, container, type) => {
 
   const tags = document.createElement(`div`);
   tags.classList.add(`card-tags`);
+  for(let i = 0; i < event[`tags`].length; i++) {
+    const tag = document.createElement(`p`);
+    tag.innerText = event[`tags`][i][`tag`];
+    tag.classList.add(`tag`);
+    tags.appendChild(tag);
+  }
 
   const bodycopy = document.createElement(`p`);
   bodycopy.innerText = event[`content`].substring(0, 100);
@@ -376,6 +382,7 @@ const createCard = (event, container, type) => {
     card.appendChild(imgContainer);
   }
 
+  card.appendChild(tags);
   card.appendChild(bodycopy);
   card.appendChild(readMore);
 
