@@ -18,7 +18,6 @@ const showErrorMessages = (errors, containers) => {
 
 const removeErrorMessages = containers => {
 
-  console.log(containers);
   for (let i = 0;i < containers.length;i ++) {
     containers[i].style.opacity = 0;
     containers[i].innerHTML = ``;
@@ -38,7 +37,6 @@ const removeError = (errors, key) => {
 const onfocus = (input, label, labelValue, containers) => {
 
   removeErrorMessages(containers);
-  //confirmContainer.style.opacity = 0;
 
   if (label.innerText !== labelValue) {
     input.value = label.innerText;
@@ -58,7 +56,6 @@ const onfocusout = (input, label, errors, labelValue, containers, errorClass, co
     } else {
       input.classList.add(confirmClass);
       removeErrorMessages(containers);
-      //confirmContainer.style.opacity = 1;
     }
   } else {
     label.innerText = labelValue;

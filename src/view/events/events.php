@@ -5,6 +5,7 @@
       <div class="location-filter-errors"></div>
       <input class="location-filter" type="text" name="location" value="">
       <label class="location-filter-label" for="location">Zoek op locatie!</label>
+      <div class="location-filter-hints"></div>
     </div>
   </form>
 </section>
@@ -60,57 +61,59 @@
         <p>september</p>
       </label>
     </form>
-    <?php foreach($events as $event): ?>
-      <?php if(file_exists('./assets/img/photos/'.$event['code'])): ?>
-        <article class="card-photo card">
-          <div class="timestamp">
-            <p><?php echo date('j', strtotime($event['start'])); ?></p>
-            <p><?php echo date('M', strtotime($event['start'])); ?></p>
-          </div>
-          <div class="card-img">
-            <img src=
-              <?php
-                $directory = './assets/img/photos/'.$event['code'];
-                $files = scandir($directory);
-                $index = 2;
-                $firstphoto = $directory . '/' . $files[$index];
-                if (substr($firstphoto, -3) != 'jpg') {
-                  $index++;
+    <div class="cards-container">
+      <?php foreach($events as $event): ?>
+        <?php if(file_exists('./assets/img/photos/'.$event['code'])): ?>
+          <article class="card-photo card">
+            <div class="timestamp">
+              <p><?php echo date('j', strtotime($event['start'])); ?></p>
+              <p><?php echo date('M', strtotime($event['start'])); ?></p>
+            </div>
+            <div class="card-img">
+              <img src=
+                <?php
+                  $directory = './assets/img/photos/'.$event['code'];
+                  $files = scandir($directory);
+                  $index = 2;
                   $firstphoto = $directory . '/' . $files[$index];
                   if (substr($firstphoto, -3) != 'jpg') {
                     $index++;
                     $firstphoto = $directory . '/' . $files[$index];
+                    if (substr($firstphoto, -3) != 'jpg') {
+                      $index++;
+                      $firstphoto = $directory . '/' . $files[$index];
+                    }
                   }
-                }
-                echo $firstphoto;
-              ?>
-            alt="Blue bike stad">
-            <h2><mark><?php echo $event['title'] ?></mark></h2>
-          </div>
-          <div class="card-tags">
-            <?php foreach($event['tags'] as $tag): ?>
-              <p class="tag"><?php echo $tag['tag'] ?></p>
-            <?php endforeach; ?>
-          </div>
-          <p class="card-bodycopy"><?php echo substr($event['content'], 0, 100).' ...'?></p>
-          <a class="read-more" href="#">Meer info</a>
-        </article>
-      <?php else: ?>
-        <article class="card-small card">
-          <div class="timestamp">
-            <p><?php echo date('j', strtotime($event['start'])); ?></p>
-            <p><?php echo date('M', strtotime($event['start'])); ?></p>
-          </div>
-          <h2><?php echo $event['title'] ?></h2>
-          <div class="card-tags">
-            <?php foreach($event['tags'] as $tag): ?>
-              <p class="tag"><?php echo $tag['tag'] ?></p>
-            <?php endforeach; ?>
-          </div>
-          <p class="card-bodycopy"><?php echo substr($event['content'], 0, 100).' ...'?></p>
-          <a class="read-more" href="#">Meer info</a>
-        </article>
-      <?php endif; ?>
-    <? endforeach;?>
+                  echo $firstphoto;
+                ?>
+              alt="Blue bike stad">
+              <h2><mark><?php echo $event['title'] ?></mark></h2>
+            </div>
+            <div class="card-tags">
+              <?php foreach($event['tags'] as $tag): ?>
+                <p class="tag"><?php echo $tag['tag'] ?></p>
+              <?php endforeach; ?>
+            </div>
+            <p class="card-bodycopy"><?php echo substr($event['content'], 0, 100).' ...'?></p>
+            <a class="read-more" href="/detail&id=<?php echo $event['id'] ?>">Meer info</a>
+          </article>
+        <?php else: ?>
+          <article class="card-small card">
+            <div class="timestamp">
+              <p><?php echo date('j', strtotime($event['start'])); ?></p>
+              <p><?php echo date('M', strtotime($event['start'])); ?></p>
+            </div>
+            <h2><?php echo $event['title'] ?></h2>
+            <div class="card-tags">
+              <?php foreach($event['tags'] as $tag): ?>
+                <p class="tag"><?php echo $tag['tag'] ?></p>
+              <?php endforeach; ?>
+            </div>
+            <p class="card-bodycopy"><?php echo substr($event['content'], 0, 100).' ...'?></p>
+            <a class="read-more" href="/detail&id=<?php echo $event['id'] ?>">Meer info</a>
+          </article>
+        <?php endif; ?>
+      <? endforeach;?>
+    </div>
   </section>
 </section>

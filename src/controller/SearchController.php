@@ -3,7 +3,7 @@
 require_once WWW_ROOT . 'controller' . DS . 'Controller.php';
 require_once WWW_ROOT . 'dao' . DS . 'EventDAO.php';
 
-class EventsController extends Controller {
+class SearchController extends Controller {
 
   private $eventDAO;
 
@@ -15,7 +15,7 @@ class EventsController extends Controller {
 
   }
 
-  public function events() {
+  public function search() {
 
     if( !empty($_REQUEST['getloc'])) {
       $this->getLocation();
@@ -34,74 +34,6 @@ class EventsController extends Controller {
             'field' => 'city',
             'comparator' => '=',
             'value' => $_REQUEST['loc']
-          );
-
-        }
-      }
-    }
-
-    if( !empty($_REQUEST['showtag'])) {
-      $tags = explode('_', $_REQUEST['tags']);
-
-      foreach($tags as $tag) {
-
-        $conditions[] = array(
-          'field' => 'tag',
-          'comparator' => '=',
-          'value' => $tag
-        );
-
-        // print_r($conditions);
-        // print_r($this->eventDAO->search($conditions));
-
-      }
-    }
-
-    if( !empty($_REQUEST['filter'])) {
-      if( !empty($_REQUEST['loc'])) {
-        $locationArray = ['Brugge', 'Antwerpen', 'Kortrijk', 'Sint-Niklaas', 'Brussel', 'Watermaal-Bosvoorde', 'Laken', 'Sint-Joost-Ten-Noode', 'Elsene', 'Ieper'];
-
-        foreach($locationArray as $location) {
-          if(stristr($_REQUEST['loc'], $location)) {
-
-            $conditions[] = array(
-              'field' => 'city',
-              'comparator' => '=',
-              'value' => $_REQUEST['loc']
-            );
-
-          }
-        }
-      }
-
-      if( !empty($_REQUEST['tags'])) {
-        $tags = explode('_', $_REQUEST['tags']);
-
-        foreach($tags as $tag) {
-
-          $conditions[] = array(
-            'field' => 'tag',
-            'comparator' => '=',
-            'value' => $tag
-          );
-
-        }
-      }
-
-      if( !empty($_REQUEST['date'])) {
-        $date = explode('_', $_REQUEST['date']);
-
-        foreach($date as $day) {
-
-          $conditions[] = array(
-            'field' => 'start',
-            'comparator' => '<=',
-            'value' => '2018-09-'.$day.' 23:59:59'
-          );
-          $conditions[] = array(
-            'field' => 'end',
-            'comparator' => '>=',
-            'value' => '2018-09-'.$day.' 00:00:00'
           );
 
         }
@@ -178,14 +110,12 @@ class EventsController extends Controller {
     $tags = $this->eventDAO->selectAllTags();
     $this->set('tags', $tags);
 
-    $response = '';
-
-    if(!empty($_REQUEST['loc']) || !empty($_REQUEST['tags']) || !empty($_REQUEST['date'])) {
-      header('Content-Type: application/json');
-      $response = json_encode($events);
-      // print_r($events);
-      echo $response;
-      // print_r($conditions);
+    if(!empty($_REQUEST['loc'])) {
+      foreach($events as $event) {
+        header('Content-Type: application/json');
+        $response = json_encode($event);
+        echo $response;
+      }
     }
   }
 
@@ -216,13 +146,6 @@ class EventsController extends Controller {
     }
 
     echo $hint === "" ? "no suggestion" : $hint;
-  }
-
-  public function detail() {
-
-    $event = $this->eventDAO->selectById($_GET['id']);
-    $this->set('event', $event);
-    print_r($_GET['id']);
   }
 
 }

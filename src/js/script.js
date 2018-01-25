@@ -37,6 +37,8 @@ const isAtTop = (bottomEl, topEl, distance) => {
   const bottomElRect = bottomEl.getBoundingClientRect();
   const topElRect = topEl.getBoundingClientRect();
 
+  // console.log(bottomElRect.top, topElRect.bottom);
+
   if(bottomElRect.top <= (topElRect.bottom + distance)) {
     return true;
   } else {
@@ -61,11 +63,27 @@ const setupFixedFilter = () => {
       container.classList.add(`cards-fixed`);
     }
 
-    if(!isAtTop(firstPhotoCard, dateFilter, 50) && !isAtTop(firstSmallCard, dateFilter, 50)) {
-      dateFilter.classList.remove(`date-filter-fixed`);
-      tagFilter.classList.remove(`tag-filter-fixed`);
-      selectedTags.classList.remove(`selected-tags-fixed`);
-      container.classList.remove(`cards-fixed`);
+    if(typeof firstPhotoCard !== `undefined` && typeof firstSmallCard !== `undefined`) {
+      if(!isAtTop(firstPhotoCard, dateFilter, 50) && !isAtTop(firstSmallCard, dateFilter, 50)) {
+        dateFilter.classList.remove(`date-filter-fixed`);
+        tagFilter.classList.remove(`tag-filter-fixed`);
+        selectedTags.classList.remove(`selected-tags-fixed`);
+        container.classList.remove(`cards-fixed`);
+      }
+    } else if(typeof firstPhotoCard === `undefined`) {
+      if(!isAtTop(firstSmallCard, dateFilter, 50)) {
+        dateFilter.classList.remove(`date-filter-fixed`);
+        tagFilter.classList.remove(`tag-filter-fixed`);
+        selectedTags.classList.remove(`selected-tags-fixed`);
+        container.classList.remove(`cards-fixed`);
+      }
+    } else if(typeof firstSmallCard === `undefined`) {
+      if(!isAtTop(firstPhotoCard, dateFilter, 50)) {
+        dateFilter.classList.remove(`date-filter-fixed`);
+        tagFilter.classList.remove(`tag-filter-fixed`);
+        selectedTags.classList.remove(`selected-tags-fixed`);
+        container.classList.remove(`cards-fixed`);
+      }
     }
   });
 
@@ -142,6 +160,9 @@ const setupTagSelection = () => {
       selectedTagsContainer.appendChild(tag);
       tags[i].remove();
       selectedTags = document.querySelectorAll(`.selected-tag`);
+
+      // filterOnTags();
+      filter();
     });
   }
 
@@ -154,6 +175,9 @@ const setupTagSelection = () => {
       tagsContainer.appendChild(tag);
       selectedTags[i].remove();
       tags = document.querySelectorAll(`.tag-filter-tag`);
+
+      // filterOnTags();
+      filter();
     });
   }
 };
@@ -244,6 +268,240 @@ const setupCardsUI = () => {
   }
 };
 
+const locationHints = () => {
+  const location = document.querySelectorAll(`.location-filter`)[0];
+  const container = document.querySelectorAll(`.location-filter-hints`)[0];
+
+  location.addEventListener(`input`, () => {
+    if(location.value !== ``) {
+      const xmlhttp = new XMLHttpRequest(),
+        method = `GET`,
+        url = `/events&getloc=true&loc=${location.value}`;
+
+      xmlhttp.onreadystatechange = () => {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+          const response = xmlhttp.responseText.split(`<`)[0];
+          const hints = response.split(`, `);
+
+          container.innerHTML = ``;
+
+          for(let i = 0; i < hints.length; i++) {
+            const hint = document.createElement(`p`);
+            hint.classList.add(`location-filter-hint`);
+            hint.innerText = hints[i];
+
+            location.focus();
+            hint.addEventListener(`click`, () => {
+              location.focus();
+              location.value = hint.innerText;
+            });
+
+            container.appendChild(hint);
+          }
+        }
+      };
+
+      xmlhttp.open(method, url, true);
+      xmlhttp.send();
+    }
+  });
+};
+
+const createCard = (event, container, type) => {
+  // <article class="card-small card">
+  //   <div class="timestamp">
+  //     <p><?php echo date('j', strtotime($event['start'])); ?></p>
+  //     <p><?php echo date('M', strtotime($event['start'])); ?></p>
+  //   </div>
+  //   <h2><?php echo $event['title'] ?></h2>
+  //   <div class="card-tags">
+  //     <?php foreach($event['tags'] as $tag): ?>
+  //       <p class="tag"><?php echo $tag['tag'] ?></p>
+  //     <?php endforeach; ?>
+  //   </div>
+  //   <p class="card-bodycopy"><?php echo substr($event['content'], 0, 100).' ...'?></p>
+  //   <a class="read-more" href="#">Meer info</a>
+  // </article>
+
+  // console.log(event[`title`], type);
+
+  const card = document.createElement(`article`);
+  if(type === `small`) {
+    card.classList.add(`card-small`);
+  } else if(type === `photo`) {
+    card.classList.add(`card-photo`);
+  }
+  card.classList.add(`card`);
+
+  const timestamp = document.createElement(`div`);
+  timestamp.classList.add(`timestamp`);
+
+  const date = document.createElement(`p`);
+  date.innerText = `16`;
+  timestamp.appendChild(date);
+
+  const month = document.createElement(`p`);
+  month.innerText = `Sep`;
+  timestamp.appendChild(month);
+
+  const title = document.createElement(`h2`);
+
+  const tags = document.createElement(`div`);
+  tags.classList.add(`card-tags`);
+  for(let i = 0; i < event[`tags`].length; i++) {
+    const tag = document.createElement(`p`);
+    tag.innerText = event[`tags`][i][`tag`];
+    tag.classList.add(`tag`);
+    tags.appendChild(tag);
+  }
+
+  const bodycopy = document.createElement(`p`);
+  bodycopy.innerText = event[`content`].substring(0, 100);
+  bodycopy.classList.add(`card-bodycopy`);
+
+  const readMore = document.createElement(`a`);
+  readMore.href = `/detail&id=${event[`id`]}`;
+  readMore.innerText = `Meer info`;
+  readMore.classList.add(`read-more`);
+
+  card.appendChild(timestamp);
+
+  if(type === `small`) {
+    card.classList.add(`card-small`);
+    title.innerText = event[`title`];
+    card.appendChild(title);
+  }else if (type === `photo`) {
+    card.classList.add(`card-photo`);
+
+    const imgContainer = document.createElement(`div`);
+    imgContainer.classList.add(`card-img`);
+
+    const img = document.createElement(`img`);
+    img.src = `../assets/img/photos/ANT1/Blue-bike-stad.jpg`;
+
+    const mark = document.createElement(`mark`);
+    mark.innerText = event[`title`];
+    title.appendChild(mark);
+
+    imgContainer.appendChild(img);
+    imgContainer.appendChild(title);
+    card.appendChild(imgContainer);
+  }
+
+  card.appendChild(tags);
+  card.appendChild(bodycopy);
+  card.appendChild(readMore);
+
+  container.appendChild(card);
+};
+
+// const createPhotoCard = (event, container) => {
+//   console.log(event, container);
+// };
+
+const createCards = data => {
+  const container = document.querySelectorAll(`.cards-container`)[0];
+  container.innerHTML = ``;
+
+  for(let i = 0; i < data.length; i++) {
+    // console.log(i, data[i][`code`]);
+    const xmlhttp = new XMLHttpRequest(),
+      method = `GET`,
+      url = `/assets/img/photos/${data[i][`code`]}`;
+
+    xmlhttp.onreadystatechange = () => {
+      // container.innerHTML = ``;
+      // console.log(xmlhttp.readyState, xmlhttp.status);
+      if(xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+        createCard(data[i], container, `photo`);
+      } else if(xmlhttp.readyState === 4 && xmlhttp.status === 0){
+        createCard(data[i], container, `small`);
+      }
+
+      setupCardsUI();
+      setupFixedFilter();
+    };
+
+    xmlhttp.open(method, url, true);
+    xmlhttp.send();
+  }
+};
+
+const xmlhttp = query => {
+  console.log(query);
+
+  const xmlhttp = new XMLHttpRequest(),
+    method = `GET`,
+    url = query;
+
+  xmlhttp.onreadystatechange = () => {
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+      console.log(xmlhttp);
+      const json = xmlhttp.responseText.split(`<`)[0];
+      const data = JSON.parse(json);
+      createCards(data);
+    }
+  };
+
+  xmlhttp.open(method, url, true);
+  xmlhttp.send();
+};
+
+const filter = () => {
+  const tags = document.querySelectorAll(`.selected-tag`);
+  const days = document.querySelectorAll(`.date-filter-day`);
+  const location = document.querySelectorAll(`.location-filter`)[0];
+  const label = document.querySelectorAll(`.location-filter-label`)[0];
+
+  let tagQuery = ``;
+  let dateQuery = ``;
+  let query = `/events&filter=true`;
+
+  console.log(query);
+
+  location.addEventListener(`focusout`, () => {
+    if(label.innerText !== ``) {
+      query = `${query}&loc=${label.innerText}`;
+    }
+
+    xmlhttp(query);
+  });
+
+  for(let i = 0; i < tags.length; i++) {
+    if(tagQuery === ``) {
+      tagQuery = tags[i].innerText;
+    } else {
+      tagQuery = `${tagQuery}_${tags[i].innerText}`;
+    }
+    query = `${query}&tags=${tagQuery}`;
+
+    xmlhttp(query);
+  }
+
+  for(let i = 0; i < days.length; i++) {
+    days[i].addEventListener(`click`, () => {
+      if(days[i].checked === true) {
+        if(dateQuery === ``) {
+          dateQuery = days[i].value;
+        } else {
+          dateQuery = `${dateQuery}_${days[i].value}`;
+        }
+        query = `${query}&date=${dateQuery}`;
+
+        xmlhttp(query);
+      }
+    });
+  }
+
+
+};
+
+const setupAjaxRequest = () => {
+  locationHints();
+  // filterOnLocation();
+  filter();
+};
+
 const init = () => {
   setupHoverFollower();
   setupFixedFilter();
@@ -254,6 +512,7 @@ const init = () => {
   setupFadingMap();
   setupInputLabelMerge();
   setupCardsUI();
+  setupAjaxRequest();
 };
 
 init();
