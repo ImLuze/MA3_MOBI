@@ -360,7 +360,7 @@ const createCard = (event, container, type) => {
   bodycopy.classList.add(`card-bodycopy`);
 
   const readMore = document.createElement(`a`);
-  readMore.href = `#`;
+  readMore.href = `/detail&id=${event[`id`]}`;
   readMore.innerText = `Meer info`;
   readMore.classList.add(`read-more`);
 
@@ -426,56 +426,6 @@ const createCards = data => {
     xmlhttp.send();
   }
 };
-
-// const filterOnLocation = () => {
-//   const location = document.querySelectorAll(`.location-filter`)[0];
-//   const label = document.querySelectorAll(`.location-filter-label`)[0];
-//   location.addEventListener(`focusout`, () => {
-//     if(label.innerText !== ``) {
-//       const xmlhttp = new XMLHttpRequest(),
-//         method = `GET`,
-//         url = `/events&showloc=true&loc=${label.innerText}`;
-//
-//       xmlhttp.onreadystatechange = () => {
-//         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-//           const json = xmlhttp.responseText.split(`<`)[0];
-//           const data = JSON.parse(json);
-//           createCards(data);
-//         }
-//       };
-//
-//       xmlhttp.open(method, url, true);
-//       xmlhttp.send();
-//     }
-//   });
-// };
-//
-// const filterOnTags = () => {
-//   const tags = document.querySelectorAll(`.selected-tag`);
-//   let query = ``;
-//
-//   for(let i = 0; i < tags.length; i++) {
-//     if(query === ``) {
-//       query = tags[i].innerText;
-//     } else {
-//       query = `${query}_${tags[i].innerText}`;
-//     }
-//     const xmlhttp = new XMLHttpRequest(),
-//       method = `GET`,
-//       url = `/events&showtag=true&tags=${query}`;
-//
-//     xmlhttp.onreadystatechange = () => {
-//       if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-//         const json = xmlhttp.responseText.split(`<`)[0];
-//         const data = JSON.parse(json);
-//         createCards(data);
-//       }
-//     };
-//
-//     xmlhttp.open(method, url, true);
-//     xmlhttp.send();
-//   }
-// };
 
 const xmlhttp = query => {
   console.log(query);
