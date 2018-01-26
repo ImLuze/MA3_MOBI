@@ -21,7 +21,7 @@
           <span class="navigation-selector reverse-element"></span>
           <div class="navigation-list">
             <a class="navigation-link active-link" href="#">Home</a>
-            <a class="navigation-link" href="#">Evenementen</a>
+            <a class="navigation-link" href="/events">Evenementen</a>
             <a class="navigation-link" href="#">Praktisch</a>
             <a class="navigation-link" href="#">#weekvandemobiliteit</a>
             <a class="navigation-link" href="#">Blog</a>
@@ -59,7 +59,7 @@
           <p>Wees op de hoogte</p>
           <form class="location-filter-form footer-form" action="index.php" method="post">
             <div class="location-filter-container">
-              <div class="location-filter-errors"></div>
+              <div class="location-filter-errors footer-errors"></div>
               <input class="location-filter footer-input" type="email" name="newsletter" value="">
               <label class="location-filter-label footer-label" for="newsletter">Email Adres</label>
             </div>

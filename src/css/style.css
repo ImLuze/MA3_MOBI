@@ -6,6 +6,12 @@ body {
   background-color: var(--bg-color);
 }
 
+h1 {
+  @apply --red-bodycopy;
+  font-size: 6rem;
+  font-weight: bold;
+}
+
 h2 {
   @apply --white-bodycopy;
   font-size: 3rem;
@@ -28,6 +34,22 @@ footer {
   margin-bottom: 1rem;
 }
 
+.date {
+  @apply --red-bodycopy;
+}
+
+.intro img {
+  filter: grayscale(100%);
+  position: absolute;
+  z-index: 0;
+}
+
+.intro h1, .intro p {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
 .footer-nav, .social-media {
   @apply --flex-column;
   @apply --white-bodycopy;
@@ -37,8 +59,15 @@ footer {
   margin-left: 5rem;
 }
 
+.partners {
+  border-radius: 15rem;
+  margin-right: 6rem;
+}
+
 .partners img {
   width: 5rem;
+  border-radius: 15rem;
+
 }
 
 .container {
@@ -487,6 +516,7 @@ footer {
 
 .footer-input {
   background-color: white;
+  color: var(--red);
 }
 
 .location-filter-form {
@@ -575,6 +605,21 @@ footer {
   opacity: 1;
   margin-top: 4.7rem;
   transition: opacity .3s, margin-top .3s;
+}
+
+.intro {
+  @apply --flex-column-center;
+  height: 80vh;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.event-content {
+  @apply --white-bodycopy;
+  color: black;
+  line-height: 2.3rem;
+  margin-bottom: 6rem;
+  width: 50vw;
 }
 
 @media (max-width: 1200px) {
