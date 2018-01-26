@@ -18,6 +18,29 @@ mark {
   padding: 0 1rem;
 }
 
+footer {
+  @apply --flex-space-between;
+  @apply --white-bodycopy;
+  position: relative;
+  width: var(--100vw);
+  height: 10rem;
+  background-color: var(--red);
+  margin-bottom: 1rem;
+}
+
+.footer-nav, .social-media {
+  @apply --flex-column;
+  @apply --white-bodycopy;
+  @apply --link;
+  justify-content: space-between;
+  height: 6rem;
+  margin-left: 5rem;
+}
+
+.partners img {
+  width: 5rem;
+}
+
 .container {
   @apply --flex-column-center;
 }
@@ -170,8 +193,9 @@ mark {
 
 .events-container {
   @apply --flex-column-center;
-  position: absolute;
+  /* position: absolute; */
   margin-top: 55rem;
+  z-index: 3;
 }
 
 .cards {
@@ -461,8 +485,16 @@ mark {
   transition: margin .3s, background-color .3s;
 }
 
+.footer-input {
+  background-color: white;
+}
+
 .location-filter-form {
   margin-top: 36rem;
+}
+
+.footer-form {
+  margin-top: 0;
 }
 
 .location-filter-container {
@@ -480,10 +512,18 @@ mark {
   transition: background-color .3s;
 }
 
+.footer-input:hover {
+  background-color: white;
+}
+
 .location-filter:focus {
   margin-top: -3.3rem;
   background-color: var(--dark-red);
   transition: margin .3s, background-color .3s;
+}
+
+.footer-input:focus {
+  background-color: white;
 }
 
 .location-filter:focus + .location-filter-label {
@@ -493,11 +533,19 @@ mark {
   transition: margin .3s, color .3s;
 }
 
+.footer-input:focus + .footer-label {
+  color: white;
+}
+
 .location-filter-label {
   @apply --white-bodycopy;
   pointer-events: none;
   margin: -2.7rem 0 0 1rem;
   transition: margin .3s, color .3s;
+}
+
+.footer-label {
+  color: var(--red);
 }
 
 .location-filter-errors {
