@@ -25,7 +25,7 @@ class EventsController extends Controller {
     $conditions = array();
 
     if( !empty($_REQUEST['showloc'])) {
-      $locationArray = ['Brugge', 'Antwerpen', 'Kortrijk', 'Sint-Niklaas', 'Brussel', 'Watermaal-Bosvoorde', 'Laken', 'Sint-Joost-Ten-Noode', 'Elsene', 'Ieper'];
+      $locationArray = ['Disneyland', 'Brugge', 'Antwerpen', 'Kortrijk', 'Sint-Niklaas', 'Brussel', 'Watermaal-Bosvoorde', 'Laken', 'Sint-Joost-Ten-Noode', 'Elsene', 'Ieper'];
 
       foreach($locationArray as $location) {
         if(stristr($_REQUEST['loc'], $location)) {
@@ -59,7 +59,7 @@ class EventsController extends Controller {
 
     if( !empty($_REQUEST['filter'])) {
       if( !empty($_REQUEST['loc'])) {
-        $locationArray = ['Brugge', 'Antwerpen', 'Kortrijk', 'Sint-Niklaas', 'Brussel', 'Watermaal-Bosvoorde', 'Laken', 'Sint-Joost-Ten-Noode', 'Elsene', 'Ieper'];
+        $locationArray = ['Disneyland', 'Brugge', 'Antwerpen', 'Kortrijk', 'Sint-Niklaas', 'Brussel', 'Watermaal-Bosvoorde', 'Laken', 'Sint-Joost-Ten-Noode', 'Elsene', 'Ieper'];
 
         foreach($locationArray as $location) {
           if(stristr($_REQUEST['loc'], $location)) {
@@ -191,7 +191,7 @@ class EventsController extends Controller {
 
   private function getLocation() {
 
-    $locationArray = ['Brugge', 'Antwerpen', 'Kortrijk', 'Sint-Niklaas', 'Brussel', 'Watermaal-Bosvoorde', 'Laken', 'Sint-Joost-Ten-Noode', 'Elsene', 'Ieper'];
+    $locationArray = ['Disneyland', 'Brugge', 'Antwerpen', 'Kortrijk', 'Sint-Niklaas', 'Brussel', 'Watermaal-Bosvoorde', 'Laken', 'Sint-Joost-Ten-Noode', 'Elsene', 'Ieper'];
 
     if(!empty($_REQUEST['loc'])) {
       $loc = $_REQUEST["loc"];
@@ -222,7 +222,9 @@ class EventsController extends Controller {
 
     $event = $this->eventDAO->selectById($_GET['id']);
     $this->set('event', $event);
-    print_r($_GET['id']);
+    $tags = $this->eventDAO->selectAllTags();
+    $this->set('tags', $tags);
+
   }
 
 }
