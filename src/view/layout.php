@@ -20,8 +20,13 @@
           </div>
           <span class="navigation-selector reverse-element"></span>
           <div class="navigation-list">
-            <a class="navigation-link active-link" href="#">Home</a>
-            <a class="navigation-link" href="/events">Evenementen</a>
+            <?php if($_GET['page'] !== 'events'): ?>
+              <a class="navigation-link active-link" href="/index.php">Home</a>
+              <a class="navigation-link" href="/events">Evenementen</a>
+            <?php else: ?>
+              <a class="navigation-link" href="/index.php">Home</a>
+              <a class="navigation-link active-link" href="/events">Evenementen</a>
+            <?php endif; ?>
             <a class="navigation-link" href="#">Praktisch</a>
             <a class="navigation-link" href="#">#weekvandemobiliteit</a>
             <a class="navigation-link" href="#">Blog</a>
