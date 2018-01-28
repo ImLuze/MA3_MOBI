@@ -1,7 +1,14 @@
 :root {
 
-  --flex: {
+  --flex-space-between: {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  --flex-row-wrap: {
+    display: flex;
+    flex-flow: row wrap;
   }
 
   --flex-column: {
@@ -9,12 +16,57 @@
     flex-direction: column;
   }
 
-  --flex-column-center {
+  --flex-column-center: {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  --test-color: red;
+  --flex-center: {
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+  }
+
+  --white-bodycopy: {
+    color: white;
+    font-family: Helvetica;
+    font-size: 1.4rem;
+  }
+
+  --red-bodycopy: {
+    color: var(--red);
+    font-family: Helvetica;
+    font-size: 1.4rem;
+  }
+
+  --link: {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  --read-more-arrow: {
+    content: ' ';
+    display: block;
+    background-color: var(--red);
+    height: .1rem;
+    width: 2rem;
+  }
+
+  --fixed-filter: {
+    position: fixed;
+    margin: 0;
+    margin-left: .5rem;
+    z-index: 4;
+  }
+
+  --red: #ff4064;
+  --dark-red: #db2e4e;
+  --bg-color: #f9f9f9;
+  --100vw: calc(100vw - 2rem);
+  --card-width: calc(( 100vw - 4rem ) / 2);
+  --image-width-offset: calc(( ( 100vw - 4rem ) / 2 ) - 2rem);
+  --image-top-offset: calc(((-68.5rem + ( ( 100vw - 4rem ) / 2 ) - 2rem) / 3) + 1rem);
 
 }

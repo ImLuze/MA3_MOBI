@@ -1,0 +1,16 @@
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="24.2px" height="24.2px" viewBox="0 0 24.2 24.2" style="enable-background:new 0 0 24.2 24.2;"
+	 xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#FFFFFF;stroke-miterlimit:10;}
+</style>
+<defs>
+</defs>
+<g>
+	<line class="st0" x1="0.4" y1="0.4" x2="23.9" y2="23.9"/>
+</g>
+<g>
+	<line class="st0" x1="23.9" y1="0.4" x2="0.4" y2="23.9"/>
+</g>
+</svg>
